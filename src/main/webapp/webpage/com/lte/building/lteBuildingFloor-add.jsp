@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>lte_building</title>
+    <title>lte_building_floor</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="online/template/ledefault/css/vendor.css">
@@ -31,6 +31,7 @@
     <script type="text/javascript" src="plug-in/Validform/plugin/passwordStrength/passwordStrength-min.js"></script>
     <script type="text/javascript" charset="utf-8" src="plug-in/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="plug-in/ueditor/ueditor.all.min.js"></script>
+
     <script type="text/javascript">
         //编写自定义JS代码
     </script>
@@ -38,99 +39,159 @@
 
 <body>
 <t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table"
-             action="lteBuildingController.do?doUpdate" tiptype="1">
+             action="lteBuildingFloorController.do?doAdd" tiptype="1">
     <input type="hidden" id="btn_sub" class="btn_sub"/>
-    <input type="hidden" name="id" value='${lteBuildingPage.id}'>
-
-
+    <input type="hidden" id="id" name="id"/>
     <div class="tab-wrapper">
         <!-- tab -->
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="javascript:void(0);">lte_building</a></li>
+            <li role="presentation" class="active"><a href="javascript:void(0);">lte_building_floor</a></li>
         </ul>
         <!-- tab内容 -->
         <div class="con-wrapper" id="con-wrapper1" style="display: block;">
             <div class="row form-wrapper">
                 <div class="row show-grid">
                     <div class="col-xs-3 text-center">
-                        <b>楼宇名称：</b>
+                        <b>楼宇ID：</b>
                     </div>
                     <div class="col-xs-3">
-                        <input id="buildingName" name="buildingName" type="text" class="form-control" ignore="ignore"
-                               value='${lteBuildingPage.buildingName}'/>
+                        <input id="buildingId" name="buildingId" type="text" class="form-control" datatype="n"
+                               ignore="checked"/>
                         <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">楼宇名称</label>
+                        <label class="Validform_label" style="display: none">楼宇ID</label>
+                    </div>
+
+
+                    <div class="col-xs-3 text-center">
+                        <b>楼层名称：</b>
+                    </div>
+                    <div class="col-xs-3">
+                        <input id="floorName" name="floorName" type="text" class="form-control" ignore="ignore"/>
+                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
+                        <label class="Validform_label" style="display: none">楼层名称</label>
                     </div>
                 </div>
 
 
                 <div class="row show-grid">
                     <div class="col-xs-3 text-center">
-                        <b>楼宇编号：</b>
+                        <b>楼层编号：</b>
                     </div>
                     <div class="col-xs-3">
-                        <input id="buildingNo" name="buildingNo" type="text" class="form-control" ignore="ignore"
-                               value='${lteBuildingPage.buildingNo}'/>
+                        <input id="floorNo" name="floorNo" type="text" class="form-control" ignore="ignore"/>
                         <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">楼宇编号</label>
+                        <label class="Validform_label" style="display: none">楼层编号</label>
                     </div>
-                </div>
 
 
-                <div class="row show-grid">
                     <div class="col-xs-3 text-center">
-                        <b>楼宇类型：</b>
+                        <b>楼层属性：</b>
                     </div>
                     <div class="col-xs-3">
-                        <input id="buildingType" name="buildingType" type="text" class="form-control" ignore="ignore"
-                               value='${lteBuildingPage.buildingType}'/>
+                        <input id="floorProperty" name="floorProperty" type="text" class="form-control"
+                               ignore="ignore"/>
                         <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">楼宇类型</label>
+                        <label class="Validform_label" style="display: none">楼层属性</label>
                     </div>
                 </div>
 
 
-                <div class="row show-grid">
-                    <div class="col-xs-3 text-center">
-                        <b>楼宇属性：</b>
-                    </div>
-                    <div class="col-xs-3">
-                        <input id="buildingProperty" name="buildingProperty" type="text" class="form-control"
-                               ignore="ignore" value='${lteBuildingPage.buildingProperty}'/>
-                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">楼宇属性</label>
-                    </div>
-                </div>
-
-
-                <div class="row show-grid">
-                    <div class="col-xs-3 text-center">
-                        <b>楼宇描述：</b>
-                    </div>
-                    <div class="col-xs-3">
-                        <script type="text/javascript" charset="utf-8" src="plug-in/ueditor/ueditor.config.js"></script>
-                        <script type="text/javascript" charset="utf-8"
-                                src="plug-in/ueditor/ueditor.all.min.js"></script>
-                        <textarea name="description" id="description"
-                                  style="width: 650px;height:300px">${lteBuildingPage.description }</textarea>
-                        <script type="text/javascript">
-                            var description_editor = UE.getEditor('description');
-                        </script>
-                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">楼宇描述</label>
-                    </div>
-                </div>
                 <div class="row show-grid">
                     <div class="col-xs-3 text-center">
                         <b>楼宇备注：</b>
                     </div>
                     <div class="col-xs-3">
-                        <textarea id="note" class="form-control" rows="6" style="width: 600px" name="note"
-                                  ignore="ignore">${lteBuildingPage.note}</textarea>
+                        <input id="note" name="note" type="text" class="form-control" ignore="ignore"/>
                         <span class="Validform_checktip" style="float:left;height:0px;"></span>
                         <label class="Validform_label" style="display: none">楼宇备注</label>
                     </div>
+
+
+                    <div class="col-xs-3 text-center">
+                        <b>创建人名称：</b>
+                    </div>
+                    <div class="col-xs-3">
+                        <input id="createName" name="createName" type="text" class="form-control" ignore="ignore"/>
+                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
+                        <label class="Validform_label" style="display: none">创建人名称</label>
+                    </div>
                 </div>
+
+
+                <div class="row show-grid">
+                    <div class="col-xs-3 text-center">
+                        <b>创建人登录名称：</b>
+                    </div>
+                    <div class="col-xs-3">
+                        <input id="createBy" name="createBy" type="text" class="form-control" ignore="ignore"/>
+                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
+                        <label class="Validform_label" style="display: none">创建人登录名称</label>
+                    </div>
+
+
+                    <div class="col-xs-3 text-center">
+                        <b>创建日期：</b>
+                    </div>
+                    <div class="col-xs-3">
+                        <input id="createDate" name="createDate" type="text" ignore="ignore"
+                               style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;"
+                               class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
+                        <label class="Validform_label" style="display: none">创建日期</label>
+                    </div>
+                </div>
+
+
+                <div class="row show-grid">
+                    <div class="col-xs-3 text-center">
+                        <b>更新人名称：</b>
+                    </div>
+                    <div class="col-xs-3">
+                        <input id="updateName" name="updateName" type="text" class="form-control" ignore="ignore"/>
+                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
+                        <label class="Validform_label" style="display: none">更新人名称</label>
+                    </div>
+
+
+                    <div class="col-xs-3 text-center">
+                        <b>更新人登录名称：</b>
+                    </div>
+                    <div class="col-xs-3">
+                        <input id="updateBy" name="updateBy" type="text" class="form-control" ignore="ignore"/>
+                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
+                        <label class="Validform_label" style="display: none">更新人登录名称</label>
+                    </div>
+                </div>
+
+
+                <div class="row show-grid">
+                    <div class="col-xs-3 text-center">
+                        <b>更新日期：</b>
+                    </div>
+                    <div class="col-xs-3">
+                        <input id="updateDate" name="updateDate" type="text" ignore="ignore"
+                               style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;"
+                               class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
+                        <label class="Validform_label" style="display: none">更新日期</label>
+                    </div>
+                    <div class="col-xs-2 text-center"><b></b></div>
+                    <div class="col-xs-4"></div>
+                </div>
+
+
+                <div class="row show-grid">
+                    <div class="col-xs-3 text-center">
+                        <b>楼层描述：</b>
+                    </div>
+                    <div class="col-xs-3">
+                        <textarea id="description" class="form-control" rows="6" style="width: 600px" name="description"
+                                  ignore="ignore"></textarea>
+                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
+                        <label class="Validform_label" style="display: none">楼层描述</label>
+                    </div>
+                </div>
+
                 <div class="row" id="sub_tr" style="display: none;">
                     <div class="col-xs-12 layout-header">
                         <div class="col-xs-6"></div>
@@ -172,5 +233,5 @@
 
 </script>
 </body>
-<script src="webpage/com/jeecg/building/lteBuilding.js"></script>
+<script src="${webRoot}/webpage/com/lte/building/lteBuildingFloor.js"></script>
 </html>
