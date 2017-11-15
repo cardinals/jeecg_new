@@ -27,12 +27,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -79,7 +74,7 @@ public class LteBuildingFloorController extends BaseController {
      */
     @RequestMapping(params = "list")
     public ModelAndView list(HttpServletRequest request) {
-        return new ModelAndView("com/jeecg/building/lteBuildingFloorList");
+        return new ModelAndView("com/lte/building/lteBuildingFloorList");
     }
 
     /**
@@ -218,7 +213,7 @@ public class LteBuildingFloorController extends BaseController {
             lteBuildingFloor = lteBuildingFloorService.getEntity(LteBuildingFloorEntity.class, lteBuildingFloor.getId());
             req.setAttribute("lteBuildingFloorPage", lteBuildingFloor);
         }
-        return new ModelAndView("com/jeecg/building/lteBuildingFloor-add");
+        return new ModelAndView("com/lte/building/lteBuildingFloor-add");
     }
 
     /**
@@ -232,7 +227,7 @@ public class LteBuildingFloorController extends BaseController {
             lteBuildingFloor = lteBuildingFloorService.getEntity(LteBuildingFloorEntity.class, lteBuildingFloor.getId());
             req.setAttribute("lteBuildingFloorPage", lteBuildingFloor);
         }
-        return new ModelAndView("com/jeecg/building/lteBuildingFloor-update");
+        return new ModelAndView("com/lte/building/lteBuildingFloor-update");
     }
 
     /**
@@ -383,5 +378,25 @@ public class LteBuildingFloorController extends BaseController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") String id) {
         lteBuildingFloorService.deleteEntityById(LteBuildingFloorEntity.class, id);
+    }
+
+    /**
+     * 测试导出Word
+     *
+     * @return
+     */
+    @RequestMapping(params = "addExportWord")
+    @ResponseBody
+    public AjaxJson addExportWord(HttpServletRequest request) {
+        AjaxJson ajaxJson = new AjaxJson();
+        try {
+            lteBuildingFloorService.addExportWord();
+            ajaxJson.setMsg("导出成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ajaxJson.setMsg("导出失败");
+            throw new BusinessException(e.getMessage());
+        }
+        return ajaxJson;
     }
 }

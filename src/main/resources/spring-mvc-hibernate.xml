@@ -14,7 +14,7 @@
 	<context:component-scan base-package="org.jeecgframework.easypoi.*" />
 	<context:component-scan base-package="org.jeecgframework.core.common.dao.*" />
 	<context:component-scan base-package="org.jeecgframework.core.common.service.*" />
-	<context:component-scan base-package="com.jeecg.*">
+	<context:component-scan base-package="com.jeecg.*,com.lte.*">
 			<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<!-- 加载service,此时要排除要controller,因为controller已经spring-mvc中加载过了 -->
@@ -102,14 +102,13 @@
 		<property name="packagesToScan">
 			<list>
 				<value>org.jeecgframework.web.system.pojo.*</value>
-				<value>org.jeecgframework.web.test.entity.*</value>
-				<value>org.jeecgframework.web.autoform.*</value>
 				<value>org.jeecgframework.web.cgform.entity.*</value>
 				<value>org.jeecgframework.web.cgreport.entity.*</value>
 				<value>org.jeecgframework.web.cgdynamgraph.entity.*</value>
 				<value>org.jeecgframework.web.graphreport.entity.*</value>
 				<value>org.jeecgframework.web.system.sms.*</value>
 				<value>com.jeecg.*</value>
+				<value>com.lte.*</value>
 			</list>
 		</property>
 	</bean>

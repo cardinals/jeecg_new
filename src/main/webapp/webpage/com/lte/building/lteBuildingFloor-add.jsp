@@ -52,17 +52,6 @@
             <div class="row form-wrapper">
                 <div class="row show-grid">
                     <div class="col-xs-3 text-center">
-                        <b>楼宇ID：</b>
-                    </div>
-                    <div class="col-xs-3">
-                        <input id="buildingId" name="buildingId" type="text" class="form-control" datatype="n"
-                               ignore="checked"/>
-                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">楼宇ID</label>
-                    </div>
-
-
-                    <div class="col-xs-3 text-center">
                         <b>楼层名称：</b>
                     </div>
                     <div class="col-xs-3">
@@ -82,8 +71,10 @@
                         <span class="Validform_checktip" style="float:left;height:0px;"></span>
                         <label class="Validform_label" style="display: none">楼层编号</label>
                     </div>
+                </div>
 
 
+                <div class="row show-grid">
                     <div class="col-xs-3 text-center">
                         <b>楼层属性：</b>
                     </div>
@@ -98,97 +89,29 @@
 
                 <div class="row show-grid">
                     <div class="col-xs-3 text-center">
-                        <b>楼宇备注：</b>
-                    </div>
-                    <div class="col-xs-3">
-                        <input id="note" name="note" type="text" class="form-control" ignore="ignore"/>
-                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">楼宇备注</label>
-                    </div>
-
-
-                    <div class="col-xs-3 text-center">
-                        <b>创建人名称：</b>
-                    </div>
-                    <div class="col-xs-3">
-                        <input id="createName" name="createName" type="text" class="form-control" ignore="ignore"/>
-                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">创建人名称</label>
-                    </div>
-                </div>
-
-
-                <div class="row show-grid">
-                    <div class="col-xs-3 text-center">
-                        <b>创建人登录名称：</b>
-                    </div>
-                    <div class="col-xs-3">
-                        <input id="createBy" name="createBy" type="text" class="form-control" ignore="ignore"/>
-                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">创建人登录名称</label>
-                    </div>
-
-
-                    <div class="col-xs-3 text-center">
-                        <b>创建日期：</b>
-                    </div>
-                    <div class="col-xs-3">
-                        <input id="createDate" name="createDate" type="text" ignore="ignore"
-                               style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;"
-                               class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
-                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">创建日期</label>
-                    </div>
-                </div>
-
-
-                <div class="row show-grid">
-                    <div class="col-xs-3 text-center">
-                        <b>更新人名称：</b>
-                    </div>
-                    <div class="col-xs-3">
-                        <input id="updateName" name="updateName" type="text" class="form-control" ignore="ignore"/>
-                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">更新人名称</label>
-                    </div>
-
-
-                    <div class="col-xs-3 text-center">
-                        <b>更新人登录名称：</b>
-                    </div>
-                    <div class="col-xs-3">
-                        <input id="updateBy" name="updateBy" type="text" class="form-control" ignore="ignore"/>
-                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">更新人登录名称</label>
-                    </div>
-                </div>
-
-
-                <div class="row show-grid">
-                    <div class="col-xs-3 text-center">
-                        <b>更新日期：</b>
-                    </div>
-                    <div class="col-xs-3">
-                        <input id="updateDate" name="updateDate" type="text" ignore="ignore"
-                               style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;"
-                               class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
-                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
-                        <label class="Validform_label" style="display: none">更新日期</label>
-                    </div>
-                    <div class="col-xs-2 text-center"><b></b></div>
-                    <div class="col-xs-4"></div>
-                </div>
-
-
-                <div class="row show-grid">
-                    <div class="col-xs-3 text-center">
                         <b>楼层描述：</b>
                     </div>
                     <div class="col-xs-3">
-                        <textarea id="description" class="form-control" rows="6" style="width: 600px" name="description"
-                                  ignore="ignore"></textarea>
+                        <script type="text/javascript" charset="utf-8" src="plug-in/ueditor/ueditor.config.js"></script>
+                        <script type="text/javascript" charset="utf-8"
+                                src="plug-in/ueditor/ueditor.all.min.js"></script>
+                        <textarea name="description" id="description" style="width: 650px;height:300px"></textarea>
+                        <script type="text/javascript">
+                            var description_editor = UE.getEditor('description');
+                        </script>
                         <span class="Validform_checktip" style="float:left;height:0px;"></span>
                         <label class="Validform_label" style="display: none">楼层描述</label>
+                    </div>
+                </div>
+                <div class="row show-grid">
+                    <div class="col-xs-3 text-center">
+                        <b>楼宇备注：</b>
+                    </div>
+                    <div class="col-xs-3">
+                        <textarea id="note" class="form-control" rows="6" style="width: 600px" name="note"
+                                  ignore="ignore"></textarea>
+                        <span class="Validform_checktip" style="float:left;height:0px;"></span>
+                        <label class="Validform_label" style="display: none">楼宇备注</label>
                     </div>
                 </div>
 

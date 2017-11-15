@@ -2,6 +2,7 @@ package com.lte.building.service.impl;
 
 import com.lte.building.entity.LteBuildingFloorEntity;
 import com.lte.building.service.LteBuildingFloorServiceI;
+import com.lte.util.OpenOfficeUtil;
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
@@ -10,6 +11,7 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +39,23 @@ public class LteBuildingFloorServiceImpl extends CommonServiceImpl implements Lt
         super.saveOrUpdate(entity);
         //执行更新操作增强业务
         this.doUpdateBus(entity);
+    }
+
+    @Override
+    public void addExportWord() throws Exception {
+        File sourcefile = new File("E:\\报告模板v2.docx");
+        String uuid = UUID.randomUUID().toString();
+        File targetFile = new File("E:\\export\\" + uuid + "\\报告模板v2.html");
+        targetFile = OpenOfficeUtil.convert(sourcefile, targetFile);
+        String htmlString = OpenOfficeUtil.toHtmlString(targetFile);
+        LteBuildingFloorEntity lteBuildingFloorEntity = this.getEntity(LteBuildingFloorEntity.class, 1);
+        String description = lteBuildingFloorEntity.getDescription();
+        OpenOfficeUtil.writeFile(htmlString,"E:\\export\\" + uuid + "\\报告.html");
+        sourcefile = new File("E:\\export\\" + uuid + "\\报告.html");
+        targetFile = new File("E:\\export\\" + uuid + "\\报告.odt");
+        OpenOfficeUtil.convert(sourcefile, targetFile);
+//        htmlString.replace("${description}", description);
+        System.out.println("LteBuildingFloorServiceImpl.addExportWord");
     }
 
     /**
@@ -70,7 +89,6 @@ public class LteBuildingFloorServiceImpl extends CommonServiceImpl implements Lt
     /**
      * 删除操作增强业务
      *
-     * @param id
      * @return
      */
     private void doDelBus(LteBuildingFloorEntity t) throws Exception {
