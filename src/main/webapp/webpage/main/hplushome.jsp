@@ -6,22 +6,14 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!--360浏览器优先以webkit内核解析-->
-
-
-    <title>Jeecg 微云快速开发平台</title>
-
+    <title>快速开发平台</title>
     <link rel="shortcut icon" href="images/favicon.ico">
     <link href="plug-in-ui/hplus/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="plug-in-ui/hplus/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-
     <link href="plug-in-ui/hplus/css/animate.css" rel="stylesheet">
     <link href="plug-in-ui/hplus/css/style.css?v=4.1.0" rel="stylesheet">
-
-
 </head>
-
 <body class="gray-bg">
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-12">
@@ -29,11 +21,11 @@
             <br>您是否一直在苦苦寻找一款强大的代码生成器，节省码农的繁琐重复工作…
             <br>您是否想拥有移动报表能力、自定义表单设计能力、插件开发能力(可插拔)、工作流配置能力…
             <br>…………
-            <h4 class="text-danger">那么，现在Jeecg来了</h4>
+            <h4 class="text-danger">那么，现在快速开发平台来了</h4>
         </blockquote>
         <hr>
     </div>
-    <div class="col-sm-3">
+    <%--<div class="col-sm-3">
         <h2>Hello,Guest</h2>
         <small>移动设备访问请扫描以下二维码：</small>
         <br>
@@ -85,10 +77,9 @@
             <li>自定义表单，可视化拖拽布局，自定义表单风格</li>
             <li>更多……</li>
         </ol>
-    </div>
-
+    </div>--%>
 </div>
-<div class="wrapper wrapper-content">
+<%--<div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-sm-4">
 
@@ -493,7 +484,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>--%>
 
 <!-- 全局js -->
 <script src="plug-in-ui/hplus/js/jquery.min.js?v=2.1.4"></script>
