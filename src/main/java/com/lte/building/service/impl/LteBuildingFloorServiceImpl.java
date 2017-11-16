@@ -2,7 +2,7 @@ package com.lte.building.service.impl;
 
 import com.lte.building.entity.LteBuildingFloorEntity;
 import com.lte.building.service.LteBuildingFloorServiceI;
-import com.lte.util.OpenOfficeUtil;
+import com.lte.util.HtmlToWordUtil;
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
@@ -43,19 +43,93 @@ public class LteBuildingFloorServiceImpl extends CommonServiceImpl implements Lt
 
     @Override
     public void addExportWord() throws Exception {
-        File sourcefile = new File("E:\\报告模板v2.docx");
-        String uuid = UUID.randomUUID().toString();
-        File targetFile = new File("E:\\export\\" + uuid + "\\报告模板v2.html");
-        targetFile = OpenOfficeUtil.convert(sourcefile, targetFile);
-        String htmlString = OpenOfficeUtil.toHtmlString(targetFile);
         LteBuildingFloorEntity lteBuildingFloorEntity = this.getEntity(LteBuildingFloorEntity.class, 1);
-        String description = lteBuildingFloorEntity.getDescription();
-        OpenOfficeUtil.writeFile(htmlString,"E:\\export\\" + uuid + "\\报告.html");
-        sourcefile = new File("E:\\export\\" + uuid + "\\报告.html");
-        targetFile = new File("E:\\export\\" + uuid + "\\报告.odt");
-        OpenOfficeUtil.convert(sourcefile, targetFile);
-//        htmlString.replace("${description}", description);
-        System.out.println("LteBuildingFloorServiceImpl.addExportWord");
+        String htmlFilePath = "E:\\export\\htmlTemplate\\报告模板v2.html";
+        File htmlFile = new File(htmlFilePath);
+        String htmlString = HtmlToWordUtil.toHtmlString(htmlFile);
+        //替换内容
+        String replaceString = htmlString.replace("${description}", "阿萨德法师打发");
+        String allTableStr = "<TABLE WIDTH=518 BORDER=1 BORDERCOLOR=\"#00000a\" CELLPADDING=7 CELLSPACING=0>\n" +
+                "    <COL WIDTH=115>\n" +
+                "    <COL WIDTH=194>\n" +
+                "    <COL WIDTH=165>\n" +
+                "    <TR VALIGN=TOP>\n" +
+                "        <TD WIDTH=115>\n" +
+                "            <P><FONT SIZE=3>测试点数</FONT></P>\n" +
+                "        </TD>\n" +
+                "        <TD WIDTH=194>\n" +
+                "            <P>\n" +
+                "                <FONT FACE=\"Calibri, serif\">\n" +
+                "                <SPAN LANG=\"en-US\">\n" +
+                "                    <FONT SIZE=3>RSRP&gt;=105dbm</FONT>\n" +
+                "                </SPAN>\n" +
+                "                </FONT>\n" +
+                "                <FONT SIZE=3>并且</FONT>\n" +
+                "                <FONT FACE=\"Calibri, serif\">\n" +
+                "                    <SPAN LANG=\"en-US\">\n" +
+                "                        <FONT SIZE=3>SNIR&gt;=-3db</FONT>\n" +
+                "                    </SPAN>\n" +
+                "                </FONT>\n" +
+                "                <FONT SIZE=3>的点数</FONT>\n" +
+                "            </P>\n" +
+                "        </TD>\n" +
+                "        <TD WIDTH=165>\n" +
+                "            <P>\n" +
+                "                <FONT SIZE=3>覆盖率</FONT>\n" +
+                "                <FONT FACE=\"Calibri, serif\">\n" +
+                "                    <SPAN LANG=\"en-US\">\n" +
+                "                        <FONT SIZE=3>%</FONT>\n" +
+                "                    </SPAN>\n" +
+                "                </FONT>\n" +
+                "            </P>\n" +
+                "        </TD>\n" +
+                "    </TR>\n" +
+                "    <TR>\n" +
+                "        <TD WIDTH=115>\n" +
+                "            <P STYLE=\"widows: 2; orphans: 2\">\n" +
+                "                <FONT FACE=\"Calibri, serif\">\n" +
+                "                    <SPAN LANG=\"en-US\">\n" +
+                "                        <FONT COLOR=\"#000000\">\n" +
+                "                            <FONT FACE=\"Calibri, serif\">53</FONT>\n" +
+                "                        </FONT>\n" +
+                "                    </SPAN>\n" +
+                "                </FONT>\n" +
+                "            </P>\n" +
+                "        </TD>\n" +
+                "        <TD WIDTH=194>\n" +
+                "            <P>\n" +
+                "                <FONT FACE=\"Calibri, serif\">\n" +
+                "                    <SPAN LANG=\"en-US\">\n" +
+                "                        <FONT COLOR=\"#000000\">\n" +
+                "                            <FONT FACE=\"Calibri, serif\">50</FONT>\n" +
+                "                        </FONT>\n" +
+                "                    </SPAN>\n" +
+                "                </FONT>\n" +
+                "            </P>\n" +
+                "        </TD>\n" +
+                "        <TD WIDTH=165>\n" +
+                "            <P>\n" +
+                "                <FONT FACE=\"Calibri, serif\">\n" +
+                "                    <SPAN LANG=\"en-US\">\n" +
+                "                        <FONT COLOR=\"#000000\">\n" +
+                "                            <FONT FACE=\"Calibri, serif\">94.34</FONT>\n" +
+                "                        </FONT>\n" +
+                "                    </SPAN>\n" +
+                "                </FONT>\n" +
+                "            </P>\n" +
+                "        </TD>\n" +
+                "    </TR>\n" +
+                "</TABLE>\n";
+        replaceString = replaceString.replace("${allTable}", allTableStr);
+        replaceString = replaceString.replace("${RSRP}", "<img width=\"300\" height=\"300\" src=\"E:\\export\\htmlTemplate\\报告模板2v2_html_m2f778711.jpg\"");
+        //替换内容
+        String uuid = UUID.randomUUID().toString();
+        String replaceFilePath = "E:\\export\\" + uuid;
+        File dirFile = new File(replaceFilePath);
+        if (!dirFile.exists()) {
+            dirFile.mkdir();
+        }
+        HtmlToWordUtil.htmlToWord2(replaceString, new File(replaceFilePath + "\\模板.doc"));
     }
 
     /**
