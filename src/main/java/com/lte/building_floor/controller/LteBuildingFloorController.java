@@ -1,7 +1,7 @@
-package com.lte.building.controller;
+package com.lte.building_floor.controller;
 
-import com.lte.building.entity.LteBuildingFloorEntity;
-import com.lte.building.service.LteBuildingFloorServiceI;
+import com.lte.building_floor.entity.LteBuildingFloorEntity;
+import com.lte.building_floor.service.LteBuildingFloorServiceI;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
@@ -74,7 +74,7 @@ public class LteBuildingFloorController extends BaseController {
      */
     @RequestMapping(params = "list")
     public ModelAndView list(HttpServletRequest request) {
-        return new ModelAndView("com/lte/building/lteBuildingFloorList");
+        return new ModelAndView("com/lte/building_floor/lteBuildingFloorList");
     }
 
     /**
@@ -213,7 +213,7 @@ public class LteBuildingFloorController extends BaseController {
             lteBuildingFloor = lteBuildingFloorService.getEntity(LteBuildingFloorEntity.class, lteBuildingFloor.getId());
             req.setAttribute("lteBuildingFloorPage", lteBuildingFloor);
         }
-        return new ModelAndView("com/lte/building/lteBuildingFloor-add");
+        return new ModelAndView("com/lte/building_floor/lteBuildingFloor-add");
     }
 
     /**
@@ -227,7 +227,7 @@ public class LteBuildingFloorController extends BaseController {
             lteBuildingFloor = lteBuildingFloorService.getEntity(LteBuildingFloorEntity.class, lteBuildingFloor.getId());
             req.setAttribute("lteBuildingFloorPage", lteBuildingFloor);
         }
-        return new ModelAndView("com/lte/building/lteBuildingFloor-update");
+        return new ModelAndView("com/lte/building_floor/lteBuildingFloor-update");
     }
 
     /**

@@ -1,6 +1,6 @@
-package com.lte.building.service;
+package com.lte.building_floor.service;
 
-import com.lte.building.entity.LteBuildingFloorEntity;
+import com.lte.building_floor.entity.LteBuildingFloorEntity;
 import org.jeecgframework.core.common.service.CommonService;
 
 import java.io.Serializable;

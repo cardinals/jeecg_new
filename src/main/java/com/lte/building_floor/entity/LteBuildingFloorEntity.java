@@ -1,4 +1,4 @@
-package com.lte.building.entity;
+package com.lte.building_floor.entity;
 
 import org.jeecgframework.poi.excel.annotation.Excel;
 

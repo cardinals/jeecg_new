@@ -1,7 +1,7 @@
-package com.lte.building.service.impl;
+package com.lte.building_floor.service.impl;
 
-import com.lte.building.entity.LteBuildingFloorEntity;
-import com.lte.building.service.LteBuildingFloorServiceI;
+import com.lte.building_floor.entity.LteBuildingFloorEntity;
+import com.lte.building_floor.service.LteBuildingFloorServiceI;
 import com.lte.util.HtmlToWordUtil;
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import org.jeecgframework.core.util.ApplicationContextUtil;
