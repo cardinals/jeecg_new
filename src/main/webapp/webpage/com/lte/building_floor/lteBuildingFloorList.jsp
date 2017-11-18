@@ -37,7 +37,7 @@
         </t:datagrid>
     </div>
 </div>
-<script src="${webRoot}/webpage/com/lte/building/lteBuildingFloorList.js"></script>
+<script src="${webRoot}/webpage/com/lte/building_floor/lteBuildingFloorList.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
     });

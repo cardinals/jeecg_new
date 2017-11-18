@@ -159,5 +159,5 @@
 
 </script>
 </body>
-<script src="${webRoot}/webpage/com/lte/building/lteBuildingFloor.js"></script>
+<script src="${webRoot}/webpage/com/lte/building_floor/lteBuildingFloor.js"></script>
 </html>
