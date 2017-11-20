@@ -1,7 +1,7 @@
-package com.lte.building.service.impl;
+package com.lte.task.service.impl;
 
-import com.lte.building.entity.LteBuildingEntity;
-import com.lte.building.service.LteBuildingServiceI;
+import com.lte.task.entity.LteScanTaskEntity;
+import com.lte.task.service.LteScanTaskServiceI;
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
@@ -15,25 +15,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@Service("lteBuildingService")
+@Service("lteScanTaskService")
 @Transactional
-public class LteBuildingServiceImpl extends CommonServiceImpl implements LteBuildingServiceI {
+public class LteScanTaskServiceImpl extends CommonServiceImpl implements LteScanTaskServiceI {
 
 
-    public void delete(LteBuildingEntity entity) throws Exception {
+    public void delete(LteScanTaskEntity entity) throws Exception {
         super.delete(entity);
         //执行删除操作增强业务
         this.doDelBus(entity);
     }
 
-    public Serializable save(LteBuildingEntity entity) throws Exception {
+    public Serializable save(LteScanTaskEntity entity) throws Exception {
         Serializable t = super.save(entity);
         //执行新增操作增强业务
         this.doAddBus(entity);
         return t;
     }
 
-    public void saveOrUpdate(LteBuildingEntity entity) throws Exception {
+    public void saveOrUpdate(LteScanTaskEntity entity) throws Exception {
         super.saveOrUpdate(entity);
         //执行更新操作增强业务
         this.doUpdateBus(entity);
@@ -45,7 +45,7 @@ public class LteBuildingServiceImpl extends CommonServiceImpl implements LteBuil
      * @param t
      * @return
      */
-    private void doAddBus(LteBuildingEntity t) throws Exception {
+    private void doAddBus(LteScanTaskEntity t) throws Exception {
         //-----------------sql增强 start----------------------------
         //-----------------sql增强 end------------------------------
 
@@ -59,7 +59,7 @@ public class LteBuildingServiceImpl extends CommonServiceImpl implements LteBuil
      * @param t
      * @return
      */
-    private void doUpdateBus(LteBuildingEntity t) throws Exception {
+    private void doUpdateBus(LteScanTaskEntity t) throws Exception {
         //-----------------sql增强 start----------------------------
         //-----------------sql增强 end------------------------------
 
@@ -73,7 +73,7 @@ public class LteBuildingServiceImpl extends CommonServiceImpl implements LteBuil
      * @param id
      * @return
      */
-    private void doDelBus(LteBuildingEntity t) throws Exception {
+    private void doDelBus(LteScanTaskEntity t) throws Exception {
         //-----------------sql增强 start----------------------------
         //-----------------sql增强 end------------------------------
 
@@ -81,14 +81,14 @@ public class LteBuildingServiceImpl extends CommonServiceImpl implements LteBuil
         //-----------------java增强 end-----------------------------
     }
 
-    private Map<String, Object> populationMap(LteBuildingEntity t) {
+    private Map<String, Object> populationMap(LteScanTaskEntity t) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("id", t.getId());
-        map.put("building_name", t.getBuildingName());
-        map.put("building_no", t.getBuildingNo());
-        map.put("building_type", t.getBuildingType());
-        map.put("building_property", t.getBuildingProperty());
-        map.put("description", t.getDescription());
+        map.put("building_id", t.getBuildingId());
+        map.put("task_name", t.getTaskName());
+        map.put("task_no", t.getTaskNo());
+        map.put("task_status", t.getTaskStatus());
+        map.put("report_status", t.getReportStatus());
         map.put("note", t.getNote());
         map.put("create_name", t.getCreateName());
         map.put("create_by", t.getCreateBy());
@@ -106,13 +106,13 @@ public class LteBuildingServiceImpl extends CommonServiceImpl implements LteBuil
      * @param t
      * @return
      */
-    public String replaceVal(String sql, LteBuildingEntity t) {
+    public String replaceVal(String sql, LteScanTaskEntity t) {
         sql = sql.replace("#{id}", String.valueOf(t.getId()));
-        sql = sql.replace("#{building_name}", String.valueOf(t.getBuildingName()));
-        sql = sql.replace("#{building_no}", String.valueOf(t.getBuildingNo()));
-        sql = sql.replace("#{building_type}", String.valueOf(t.getBuildingType()));
-        sql = sql.replace("#{building_property}", String.valueOf(t.getBuildingProperty()));
-        sql = sql.replace("#{description}", String.valueOf(t.getDescription()));
+        sql = sql.replace("#{building_id}", String.valueOf(t.getBuildingId()));
+        sql = sql.replace("#{task_name}", String.valueOf(t.getTaskName()));
+        sql = sql.replace("#{task_no}", String.valueOf(t.getTaskNo()));
+        sql = sql.replace("#{task_status}", String.valueOf(t.getTaskStatus()));
+        sql = sql.replace("#{report_status}", String.valueOf(t.getReportStatus()));
         sql = sql.replace("#{note}", String.valueOf(t.getNote()));
         sql = sql.replace("#{create_name}", String.valueOf(t.getCreateName()));
         sql = sql.replace("#{create_by}", String.valueOf(t.getCreateBy()));
@@ -139,7 +139,7 @@ public class LteBuildingServiceImpl extends CommonServiceImpl implements LteBuil
                 }
                 if (obj instanceof CgformEnhanceJavaInter) {
                     CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
-                    javaInter.execute("lte_building", data);
+                    javaInter.execute("lte_scan_task", data);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

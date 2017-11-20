@@ -1,7 +1,7 @@
-package com.lte.building.controller;
+package com.lte.task.controller;
 
-import com.lte.building.entity.LteBuildingEntity;
-import com.lte.building.service.LteBuildingServiceI;
+import com.lte.task.entity.LteScanTaskEntity;
+import com.lte.task.service.LteScanTaskServiceI;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
@@ -53,19 +53,19 @@ import java.util.Set;
  * @author onlineGenerator
  * @version V1.0
  * @Title: Controller
- * @Description: lte_building
- * @date 2017-11-18 15:59:59
+ * @Description: lte_scan_task
+ * @date 2017-11-20 13:41:06
  */
 @Controller
-@RequestMapping("/lteBuildingController")
-public class LteBuildingController extends BaseController {
+@RequestMapping("/lteScanTaskController")
+public class LteScanTaskController extends BaseController {
     /**
      * Logger for this class
      */
-    private static final Logger logger = Logger.getLogger(LteBuildingController.class);
+    private static final Logger logger = Logger.getLogger(LteScanTaskController.class);
 
     @Autowired
-    private LteBuildingServiceI lteBuildingService;
+    private LteScanTaskServiceI lteScanTaskService;
     @Autowired
     private SystemService systemService;
     @Autowired
@@ -73,13 +73,13 @@ public class LteBuildingController extends BaseController {
 
 
     /**
-     * lte_building列表 页面跳转
+     * lte_scan_task列表 页面跳转
      *
      * @return
      */
     @RequestMapping(params = "list")
     public ModelAndView list(HttpServletRequest request) {
-        return new ModelAndView("com/jeecg/building/lteBuildingList");
+        return new ModelAndView("com/jeecg/task/lteScanTaskList");
     }
 
     /**
@@ -92,38 +92,38 @@ public class LteBuildingController extends BaseController {
      */
 
     @RequestMapping(params = "datagrid")
-    public void datagrid(LteBuildingEntity lteBuilding, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
-        CriteriaQuery cq = new CriteriaQuery(LteBuildingEntity.class, dataGrid);
+    public void datagrid(LteScanTaskEntity lteScanTask, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+        CriteriaQuery cq = new CriteriaQuery(LteScanTaskEntity.class, dataGrid);
         //查询条件组装器
-        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, lteBuilding, request.getParameterMap());
+        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, lteScanTask, request.getParameterMap());
         try {
             //自定义追加查询条件
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
         cq.add();
-        this.lteBuildingService.getDataGridReturn(cq, true);
+        this.lteScanTaskService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
 
     /**
-     * 删除lte_building
+     * 删除lte_scan_task
      *
      * @return
      */
     @RequestMapping(params = "doDel")
     @ResponseBody
-    public AjaxJson doDel(LteBuildingEntity lteBuilding, HttpServletRequest request) {
+    public AjaxJson doDel(LteScanTaskEntity lteScanTask, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
-        lteBuilding = systemService.getEntity(LteBuildingEntity.class, lteBuilding.getId());
-        message = "lte_building删除成功";
+        lteScanTask = systemService.getEntity(LteScanTaskEntity.class, lteScanTask.getId());
+        message = "lte_scan_task删除成功";
         try {
-            lteBuildingService.delete(lteBuilding);
+            lteScanTaskService.delete(lteScanTask);
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "lte_building删除失败";
+            message = "lte_scan_task删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -131,7 +131,7 @@ public class LteBuildingController extends BaseController {
     }
 
     /**
-     * 批量删除lte_building
+     * 批量删除lte_scan_task
      *
      * @return
      */
@@ -140,18 +140,18 @@ public class LteBuildingController extends BaseController {
     public AjaxJson doBatchDel(String ids, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
-        message = "lte_building删除成功";
+        message = "lte_scan_task删除成功";
         try {
             for (String id : ids.split(",")) {
-                LteBuildingEntity lteBuilding = systemService.getEntity(LteBuildingEntity.class,
+                LteScanTaskEntity lteScanTask = systemService.getEntity(LteScanTaskEntity.class,
                         Integer.parseInt(id)
                 );
-                lteBuildingService.delete(lteBuilding);
+                lteScanTaskService.delete(lteScanTask);
                 systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "lte_building删除失败";
+            message = "lte_scan_task删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -160,23 +160,23 @@ public class LteBuildingController extends BaseController {
 
 
     /**
-     * 添加lte_building
+     * 添加lte_scan_task
      *
      * @param ids
      * @return
      */
     @RequestMapping(params = "doAdd")
     @ResponseBody
-    public AjaxJson doAdd(LteBuildingEntity lteBuilding, HttpServletRequest request) {
+    public AjaxJson doAdd(LteScanTaskEntity lteScanTask, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
-        message = "lte_building添加成功";
+        message = "lte_scan_task添加成功";
         try {
-            lteBuildingService.save(lteBuilding);
+            lteScanTaskService.save(lteScanTask);
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "lte_building添加失败";
+            message = "lte_scan_task添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -184,25 +184,25 @@ public class LteBuildingController extends BaseController {
     }
 
     /**
-     * 更新lte_building
+     * 更新lte_scan_task
      *
      * @param ids
      * @return
      */
     @RequestMapping(params = "doUpdate")
     @ResponseBody
-    public AjaxJson doUpdate(LteBuildingEntity lteBuilding, HttpServletRequest request) {
+    public AjaxJson doUpdate(LteScanTaskEntity lteScanTask, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
-        message = "lte_building更新成功";
-        LteBuildingEntity t = lteBuildingService.get(LteBuildingEntity.class, lteBuilding.getId());
+        message = "lte_scan_task更新成功";
+        LteScanTaskEntity t = lteScanTaskService.get(LteScanTaskEntity.class, lteScanTask.getId());
         try {
-            MyBeanUtils.copyBeanNotNull2Bean(lteBuilding, t);
-            lteBuildingService.saveOrUpdate(t);
+            MyBeanUtils.copyBeanNotNull2Bean(lteScanTask, t);
+            lteScanTaskService.saveOrUpdate(t);
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "lte_building更新失败";
+            message = "lte_scan_task更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -211,31 +211,31 @@ public class LteBuildingController extends BaseController {
 
 
     /**
-     * lte_building新增页面跳转
+     * lte_scan_task新增页面跳转
      *
      * @return
      */
     @RequestMapping(params = "goAdd")
-    public ModelAndView goAdd(LteBuildingEntity lteBuilding, HttpServletRequest req) {
-        if (StringUtil.isNotEmpty(lteBuilding.getId())) {
-            lteBuilding = lteBuildingService.getEntity(LteBuildingEntity.class, lteBuilding.getId());
-            req.setAttribute("lteBuildingPage", lteBuilding);
+    public ModelAndView goAdd(LteScanTaskEntity lteScanTask, HttpServletRequest req) {
+        if (StringUtil.isNotEmpty(lteScanTask.getId())) {
+            lteScanTask = lteScanTaskService.getEntity(LteScanTaskEntity.class, lteScanTask.getId());
+            req.setAttribute("lteScanTaskPage", lteScanTask);
         }
-        return new ModelAndView("com/jeecg/building/lteBuilding-add");
+        return new ModelAndView("com/jeecg/task/lteScanTask-add");
     }
 
     /**
-     * lte_building编辑页面跳转
+     * lte_scan_task编辑页面跳转
      *
      * @return
      */
     @RequestMapping(params = "goUpdate")
-    public ModelAndView goUpdate(LteBuildingEntity lteBuilding, HttpServletRequest req) {
-        if (StringUtil.isNotEmpty(lteBuilding.getId())) {
-            lteBuilding = lteBuildingService.getEntity(LteBuildingEntity.class, lteBuilding.getId());
-            req.setAttribute("lteBuildingPage", lteBuilding);
+    public ModelAndView goUpdate(LteScanTaskEntity lteScanTask, HttpServletRequest req) {
+        if (StringUtil.isNotEmpty(lteScanTask.getId())) {
+            lteScanTask = lteScanTaskService.getEntity(LteScanTaskEntity.class, lteScanTask.getId());
+            req.setAttribute("lteScanTaskPage", lteScanTask);
         }
-        return new ModelAndView("com/jeecg/building/lteBuilding-update");
+        return new ModelAndView("com/jeecg/task/lteScanTask-update");
     }
 
     /**
@@ -245,7 +245,7 @@ public class LteBuildingController extends BaseController {
      */
     @RequestMapping(params = "upload")
     public ModelAndView upload(HttpServletRequest req) {
-        req.setAttribute("controller_name", "lteBuildingController");
+        req.setAttribute("controller_name", "lteScanTaskController");
         return new ModelAndView("common/upload/pub_excel_upload");
     }
 
@@ -256,16 +256,16 @@ public class LteBuildingController extends BaseController {
      * @param response
      */
     @RequestMapping(params = "exportXls")
-    public String exportXls(LteBuildingEntity lteBuilding, HttpServletRequest request, HttpServletResponse response
+    public String exportXls(LteScanTaskEntity lteScanTask, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
-        CriteriaQuery cq = new CriteriaQuery(LteBuildingEntity.class, dataGrid);
-        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, lteBuilding, request.getParameterMap());
-        List<LteBuildingEntity> lteBuildings = this.lteBuildingService.getListByCriteriaQuery(cq, false);
-        modelMap.put(NormalExcelConstants.FILE_NAME, "lte_building");
-        modelMap.put(NormalExcelConstants.CLASS, LteBuildingEntity.class);
-        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("lte_building列表", "导出人:" + ResourceUtil.getSessionUser().getRealName(),
+        CriteriaQuery cq = new CriteriaQuery(LteScanTaskEntity.class, dataGrid);
+        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, lteScanTask, request.getParameterMap());
+        List<LteScanTaskEntity> lteScanTasks = this.lteScanTaskService.getListByCriteriaQuery(cq, false);
+        modelMap.put(NormalExcelConstants.FILE_NAME, "lte_scan_task");
+        modelMap.put(NormalExcelConstants.CLASS, LteScanTaskEntity.class);
+        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("lte_scan_task列表", "导出人:" + ResourceUtil.getSessionUser().getRealName(),
                 "导出信息"));
-        modelMap.put(NormalExcelConstants.DATA_LIST, lteBuildings);
+        modelMap.put(NormalExcelConstants.DATA_LIST, lteScanTasks);
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
 
@@ -276,11 +276,11 @@ public class LteBuildingController extends BaseController {
      * @param response
      */
     @RequestMapping(params = "exportXlsByT")
-    public String exportXlsByT(LteBuildingEntity lteBuilding, HttpServletRequest request, HttpServletResponse response
+    public String exportXlsByT(LteScanTaskEntity lteScanTask, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
-        modelMap.put(NormalExcelConstants.FILE_NAME, "lte_building");
-        modelMap.put(NormalExcelConstants.CLASS, LteBuildingEntity.class);
-        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("lte_building列表", "导出人:" + ResourceUtil.getSessionUser().getRealName(),
+        modelMap.put(NormalExcelConstants.FILE_NAME, "lte_scan_task");
+        modelMap.put(NormalExcelConstants.CLASS, LteScanTaskEntity.class);
+        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("lte_scan_task列表", "导出人:" + ResourceUtil.getSessionUser().getRealName(),
                 "导出信息"));
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
@@ -301,9 +301,9 @@ public class LteBuildingController extends BaseController {
             params.setHeadRows(1);
             params.setNeedSave(true);
             try {
-                List<LteBuildingEntity> listLteBuildingEntitys = ExcelImportUtil.importExcel(file.getInputStream(), LteBuildingEntity.class, params);
-                for (LteBuildingEntity lteBuilding : listLteBuildingEntitys) {
-                    lteBuildingService.save(lteBuilding);
+                List<LteScanTaskEntity> listLteScanTaskEntitys = ExcelImportUtil.importExcel(file.getInputStream(), LteScanTaskEntity.class, params);
+                for (LteScanTaskEntity lteScanTask : listLteScanTaskEntitys) {
+                    lteScanTaskService.save(lteScanTask);
                 }
                 j.setMsg("文件导入成功！");
             } catch (Exception e) {
@@ -322,15 +322,15 @@ public class LteBuildingController extends BaseController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<LteBuildingEntity> list() {
-        List<LteBuildingEntity> listLteBuildings = lteBuildingService.getList(LteBuildingEntity.class);
-        return listLteBuildings;
+    public List<LteScanTaskEntity> list() {
+        List<LteScanTaskEntity> listLteScanTasks = lteScanTaskService.getList(LteScanTaskEntity.class);
+        return listLteScanTasks;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> get(@PathVariable("id") String id) {
-        LteBuildingEntity task = lteBuildingService.get(LteBuildingEntity.class, id);
+        LteScanTaskEntity task = lteScanTaskService.get(LteScanTaskEntity.class, id);
         if (task == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
@@ -339,23 +339,23 @@ public class LteBuildingController extends BaseController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<?> create(@RequestBody LteBuildingEntity lteBuilding, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<?> create(@RequestBody LteScanTaskEntity lteScanTask, UriComponentsBuilder uriBuilder) {
         //调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-        Set<ConstraintViolation<LteBuildingEntity>> failures = validator.validate(lteBuilding);
+        Set<ConstraintViolation<LteScanTaskEntity>> failures = validator.validate(lteScanTask);
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
 
         //保存
         try {
-            lteBuildingService.save(lteBuilding);
+            lteScanTaskService.save(lteScanTask);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
         //按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
-        String id = lteBuilding.getId().toString();
-        URI uri = uriBuilder.path("/rest/lteBuildingController/" + id).build().toUri();
+        String id = lteScanTask.getId().toString();
+        URI uri = uriBuilder.path("/rest/lteScanTaskController/" + id).build().toUri();
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uri);
 
@@ -363,16 +363,16 @@ public class LteBuildingController extends BaseController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> update(@RequestBody LteBuildingEntity lteBuilding) {
+    public ResponseEntity<?> update(@RequestBody LteScanTaskEntity lteScanTask) {
         //调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-        Set<ConstraintViolation<LteBuildingEntity>> failures = validator.validate(lteBuilding);
+        Set<ConstraintViolation<LteScanTaskEntity>> failures = validator.validate(lteScanTask);
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
 
         //保存
         try {
-            lteBuildingService.saveOrUpdate(lteBuilding);
+            lteScanTaskService.saveOrUpdate(lteScanTask);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -385,6 +385,6 @@ public class LteBuildingController extends BaseController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") String id) {
-        lteBuildingService.deleteEntityById(LteBuildingEntity.class, id);
+        lteScanTaskService.deleteEntityById(LteScanTaskEntity.class, id);
     }
 }
