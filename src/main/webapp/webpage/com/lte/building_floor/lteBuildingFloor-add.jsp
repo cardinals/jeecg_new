@@ -60,8 +60,6 @@
                         <label class="Validform_label" style="display: none">楼层名称</label>
                     </div>
                 </div>
-
-
                 <div class="row show-grid">
                     <div class="col-xs-3 text-center">
                         <b>楼层编号：</b>
@@ -72,8 +70,6 @@
                         <label class="Validform_label" style="display: none">楼层编号</label>
                     </div>
                 </div>
-
-
                 <div class="row show-grid">
                     <div class="col-xs-3 text-center">
                         <b>楼层属性：</b>
@@ -85,8 +81,6 @@
                         <label class="Validform_label" style="display: none">楼层属性</label>
                     </div>
                 </div>
-
-
                 <div class="row show-grid">
                     <div class="col-xs-3 text-center">
                         <b>楼层描述：</b>
@@ -114,7 +108,6 @@
                         <label class="Validform_label" style="display: none">楼宇备注</label>
                     </div>
                 </div>
-
                 <div class="row" id="sub_tr" style="display: none;">
                     <div class="col-xs-12 layout-header">
                         <div class="col-xs-6"></div>
@@ -125,7 +118,6 @@
                 </div>
             </div>
         </div>
-
         <div class="con-wrapper" id="con-wrapper2" style="display: block;"></div>
     </div>
 </t:formvalid>
