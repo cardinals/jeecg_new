@@ -79,7 +79,7 @@ public class LteBuildingController extends BaseController {
      */
     @RequestMapping(params = "list")
     public ModelAndView list(HttpServletRequest request) {
-        return new ModelAndView("com/jeecg/building/lteBuildingList");
+        return new ModelAndView("com/lte/building/lteBuildingList");
     }
 
     /**
@@ -221,7 +221,7 @@ public class LteBuildingController extends BaseController {
             lteBuilding = lteBuildingService.getEntity(LteBuildingEntity.class, lteBuilding.getId());
             req.setAttribute("lteBuildingPage", lteBuilding);
         }
-        return new ModelAndView("com/jeecg/building/lteBuilding-add");
+        return new ModelAndView("com/lte/building/lteBuilding-add");
     }
 
     /**
@@ -235,7 +235,7 @@ public class LteBuildingController extends BaseController {
             lteBuilding = lteBuildingService.getEntity(LteBuildingEntity.class, lteBuilding.getId());
             req.setAttribute("lteBuildingPage", lteBuilding);
         }
-        return new ModelAndView("com/jeecg/building/lteBuilding-update");
+        return new ModelAndView("com/lte/building/lteBuilding-update");
     }
 
     /**

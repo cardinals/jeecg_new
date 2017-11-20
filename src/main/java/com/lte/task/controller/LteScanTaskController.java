@@ -79,7 +79,7 @@ public class LteScanTaskController extends BaseController {
      */
     @RequestMapping(params = "list")
     public ModelAndView list(HttpServletRequest request) {
-        return new ModelAndView("com/jeecg/task/lteScanTaskList");
+        return new ModelAndView("com/lte/task/lteScanTaskList");
     }
 
     /**
@@ -221,7 +221,7 @@ public class LteScanTaskController extends BaseController {
             lteScanTask = lteScanTaskService.getEntity(LteScanTaskEntity.class, lteScanTask.getId());
             req.setAttribute("lteScanTaskPage", lteScanTask);
         }
-        return new ModelAndView("com/jeecg/task/lteScanTask-add");
+        return new ModelAndView("com/lte/task/lteScanTask-add");
     }
 
     /**
@@ -235,7 +235,7 @@ public class LteScanTaskController extends BaseController {
             lteScanTask = lteScanTaskService.getEntity(LteScanTaskEntity.class, lteScanTask.getId());
             req.setAttribute("lteScanTaskPage", lteScanTask);
         }
-        return new ModelAndView("com/jeecg/task/lteScanTask-update");
+        return new ModelAndView("com/lte/task/lteScanTask-update");
     }
 
     /**
