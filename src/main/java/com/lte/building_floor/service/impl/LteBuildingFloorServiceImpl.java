@@ -2,7 +2,6 @@ package com.lte.building_floor.service.impl;
 
 import com.lte.building_floor.entity.LteBuildingFloorEntity;
 import com.lte.building_floor.service.LteBuildingFloorServiceI;
-import com.lte.util.HtmlToWordUtil;
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
@@ -11,7 +10,6 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,97 +37,6 @@ public class LteBuildingFloorServiceImpl extends CommonServiceImpl implements Lt
         super.saveOrUpdate(entity);
         //执行更新操作增强业务
         this.doUpdateBus(entity);
-    }
-
-    @Override
-    public void addExportWord() throws Exception {
-        LteBuildingFloorEntity lteBuildingFloorEntity = this.getEntity(LteBuildingFloorEntity.class, 1);
-        String htmlFilePath = "E:\\export\\htmlTemplate\\报告模板v2.html";
-        File htmlFile = new File(htmlFilePath);
-        String htmlString = HtmlToWordUtil.toHtmlString(htmlFile);
-        //替换内容
-        String replaceString = htmlString.replace("${description}", "阿萨德法师打发");
-        String allTableStr = "<TABLE WIDTH=518 BORDER=1 BORDERCOLOR=\"#00000a\" CELLPADDING=7 CELLSPACING=0>\n" +
-                "    <COL WIDTH=115>\n" +
-                "    <COL WIDTH=194>\n" +
-                "    <COL WIDTH=165>\n" +
-                "    <TR VALIGN=TOP>\n" +
-                "        <TD WIDTH=115>\n" +
-                "            <P><FONT SIZE=3>测试点数</FONT></P>\n" +
-                "        </TD>\n" +
-                "        <TD WIDTH=194>\n" +
-                "            <P>\n" +
-                "                <FONT FACE=\"Calibri, serif\">\n" +
-                "                <SPAN LANG=\"en-US\">\n" +
-                "                    <FONT SIZE=3>RSRP&gt;=105dbm</FONT>\n" +
-                "                </SPAN>\n" +
-                "                </FONT>\n" +
-                "                <FONT SIZE=3>并且</FONT>\n" +
-                "                <FONT FACE=\"Calibri, serif\">\n" +
-                "                    <SPAN LANG=\"en-US\">\n" +
-                "                        <FONT SIZE=3>SNIR&gt;=-3db</FONT>\n" +
-                "                    </SPAN>\n" +
-                "                </FONT>\n" +
-                "                <FONT SIZE=3>的点数</FONT>\n" +
-                "            </P>\n" +
-                "        </TD>\n" +
-                "        <TD WIDTH=165>\n" +
-                "            <P>\n" +
-                "                <FONT SIZE=3>覆盖率</FONT>\n" +
-                "                <FONT FACE=\"Calibri, serif\">\n" +
-                "                    <SPAN LANG=\"en-US\">\n" +
-                "                        <FONT SIZE=3>%</FONT>\n" +
-                "                    </SPAN>\n" +
-                "                </FONT>\n" +
-                "            </P>\n" +
-                "        </TD>\n" +
-                "    </TR>\n" +
-                "    <TR>\n" +
-                "        <TD WIDTH=115>\n" +
-                "            <P STYLE=\"widows: 2; orphans: 2\">\n" +
-                "                <FONT FACE=\"Calibri, serif\">\n" +
-                "                    <SPAN LANG=\"en-US\">\n" +
-                "                        <FONT COLOR=\"#000000\">\n" +
-                "                            <FONT FACE=\"Calibri, serif\">53</FONT>\n" +
-                "                        </FONT>\n" +
-                "                    </SPAN>\n" +
-                "                </FONT>\n" +
-                "            </P>\n" +
-                "        </TD>\n" +
-                "        <TD WIDTH=194>\n" +
-                "            <P>\n" +
-                "                <FONT FACE=\"Calibri, serif\">\n" +
-                "                    <SPAN LANG=\"en-US\">\n" +
-                "                        <FONT COLOR=\"#000000\">\n" +
-                "                            <FONT FACE=\"Calibri, serif\">50</FONT>\n" +
-                "                        </FONT>\n" +
-                "                    </SPAN>\n" +
-                "                </FONT>\n" +
-                "            </P>\n" +
-                "        </TD>\n" +
-                "        <TD WIDTH=165>\n" +
-                "            <P>\n" +
-                "                <FONT FACE=\"Calibri, serif\">\n" +
-                "                    <SPAN LANG=\"en-US\">\n" +
-                "                        <FONT COLOR=\"#000000\">\n" +
-                "                            <FONT FACE=\"Calibri, serif\">94.34</FONT>\n" +
-                "                        </FONT>\n" +
-                "                    </SPAN>\n" +
-                "                </FONT>\n" +
-                "            </P>\n" +
-                "        </TD>\n" +
-                "    </TR>\n" +
-                "</TABLE>\n";
-        replaceString = replaceString.replace("${allTable}", allTableStr);
-        replaceString = replaceString.replace("${RSRP}", "<img width=\"300\" height=\"300\" src=\"E:\\export\\htmlTemplate\\报告模板2v2_html_m2f778711.jpg\"");
-        //替换内容
-        String uuid = UUID.randomUUID().toString();
-        String replaceFilePath = "E:\\export\\" + uuid;
-        File dirFile = new File(replaceFilePath);
-        if (!dirFile.exists()) {
-            dirFile.mkdir();
-        }
-        HtmlToWordUtil.htmlToWord2(replaceString, new File(replaceFilePath + "\\模板.doc"));
     }
 
     /**
@@ -163,6 +70,7 @@ public class LteBuildingFloorServiceImpl extends CommonServiceImpl implements Lt
     /**
      * 删除操作增强业务
      *
+     * @param id
      * @return
      */
     private void doDelBus(LteBuildingFloorEntity t) throws Exception {

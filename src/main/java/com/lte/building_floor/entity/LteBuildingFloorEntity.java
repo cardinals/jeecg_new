@@ -15,88 +15,69 @@ import java.util.Date;
  * @version V1.0
  * @Title: Entity
  * @Description: lte_building_floor
- * @date 2017-11-14 13:26:26
+ * @date 2017-11-21 09:40:58
  */
 @Entity
-@Table(name = "lte_building_floor")
+@Table(name = "lte_building_floor", schema = "")
 @SuppressWarnings("serial")
 public class LteBuildingFloorEntity implements java.io.Serializable {
     /**
      * ID
      */
-
     private Integer id;
     /**
      * 楼宇ID
      */
-    @Excel(name = "楼宇ID", width = 15)
-
+    @Excel(name = "楼宇ID", width = 15, dictTable = "pomp_building", dicCode = "building_id", dicText = "id")
     private Integer buildingId;
     /**
      * 楼层名称
      */
     @Excel(name = "楼层名称", width = 15)
-
     private String floorName;
     /**
      * 楼层编号
      */
     @Excel(name = "楼层编号", width = 15)
-
     private String floorNo;
     /**
      * 楼层属性
      */
     @Excel(name = "楼层属性", width = 15)
-
     private String floorProperty;
     /**
      * 楼层描述
      */
     @Excel(name = "楼层描述", width = 15)
-
     private String description;
     /**
      * 楼宇备注
      */
     @Excel(name = "楼宇备注", width = 15)
-
     private String note;
     /**
      * 创建人名称
      */
-    @Excel(name = "创建人名称", width = 15)
-
     private String createName;
     /**
      * 创建人登录名称
      */
-    @Excel(name = "创建人登录名称", width = 15)
-
     private String createBy;
     /**
      * 创建日期
      */
-    @Excel(name = "创建日期", width = 15, format = "yyyy-MM-dd")
-
     private Date createDate;
     /**
      * 更新人名称
      */
-    @Excel(name = "更新人名称", width = 15)
-
     private String updateName;
     /**
      * 更新人登录名称
      */
-    @Excel(name = "更新人登录名称", width = 15)
-
     private String updateBy;
     /**
      * 更新日期
      */
-    @Excel(name = "更新日期", width = 15, format = "yyyy-MM-dd")
-
     private Date updateDate;
 
     /**
@@ -106,6 +87,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     @Column(name = "ID", nullable = false, length = 10)
     public Integer getId() {
         return this.id;
@@ -125,6 +107,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.lang.Integer  楼宇ID
      */
+
     @Column(name = "BUILDING_ID", nullable = false, length = 10)
     public Integer getBuildingId() {
         return this.buildingId;
@@ -144,6 +127,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.lang.String  楼层名称
      */
+
     @Column(name = "FLOOR_NAME", nullable = true, length = 100)
     public String getFloorName() {
         return this.floorName;
@@ -163,6 +147,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.lang.String  楼层编号
      */
+
     @Column(name = "FLOOR_NO", nullable = true, length = 100)
     public String getFloorNo() {
         return this.floorNo;
@@ -182,6 +167,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.lang.String  楼层属性
      */
+
     @Column(name = "FLOOR_PROPERTY", nullable = true, length = 100)
     public String getFloorProperty() {
         return this.floorProperty;
@@ -201,6 +187,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.lang.String  楼层描述
      */
+
     @Column(name = "DESCRIPTION", nullable = true, length = 5000)
     public String getDescription() {
         return this.description;
@@ -220,6 +207,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.lang.String  楼宇备注
      */
+
     @Column(name = "NOTE", nullable = true, length = 1000)
     public String getNote() {
         return this.note;
@@ -239,6 +227,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.lang.String  创建人名称
      */
+
     @Column(name = "CREATE_NAME", nullable = true, length = 100)
     public String getCreateName() {
         return this.createName;
@@ -258,6 +247,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.lang.String  创建人登录名称
      */
+
     @Column(name = "CREATE_BY", nullable = true, length = 100)
     public String getCreateBy() {
         return this.createBy;
@@ -277,6 +267,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.util.Date  创建日期
      */
+
     @Column(name = "CREATE_DATE", nullable = true)
     public Date getCreateDate() {
         return this.createDate;
@@ -296,6 +287,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.lang.String  更新人名称
      */
+
     @Column(name = "UPDATE_NAME", nullable = true, length = 100)
     public String getUpdateName() {
         return this.updateName;
@@ -315,6 +307,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.lang.String  更新人登录名称
      */
+
     @Column(name = "UPDATE_BY", nullable = true, length = 100)
     public String getUpdateBy() {
         return this.updateBy;
@@ -334,6 +327,7 @@ public class LteBuildingFloorEntity implements java.io.Serializable {
      *
      * @return: java.util.Date  更新日期
      */
+
     @Column(name = "UPDATE_DATE", nullable = true)
     public Date getUpdateDate() {
         return this.updateDate;

@@ -1,4 +1,4 @@
-﻿﻿// update--begin--author:zhangjiaqiang date:20170621 for:如何避免console.log引起javascript的兼容问题 
+﻿// update--begin--author:zhangjiaqiang date:20170621 for:如何避免console.log引起javascript的兼容问题
 if(!window.console){
     window.console = {};
 }
@@ -6,7 +6,7 @@ if(!window.console.log){
     window.console.log = function(msg){};
 }
 
-﻿var basePath;
+var basePath;
 try{
 	var local = window.location;  
 	var contextPath = local.pathname.split("/")[1];  
@@ -984,7 +984,7 @@ function closetab(title) {
 	//tip("添加成功");
 }
 
-//popup  
+//popup
 //object: this  name:需要选择的列表的字段  code:动态报表的code
 function inputClick(obj,name,code) {
 	 if(name==""||code==""){

@@ -13,5 +13,4 @@ public interface LteBuildingFloorServiceI extends CommonService {
 
     void saveOrUpdate(LteBuildingFloorEntity entity) throws Exception;
 
-    void addExportWord() throws Exception;
 }

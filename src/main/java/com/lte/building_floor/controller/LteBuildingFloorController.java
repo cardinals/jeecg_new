@@ -27,7 +27,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,7 +54,7 @@ import java.util.Set;
  * @version V1.0
  * @Title: Controller
  * @Description: lte_building_floor
- * @date 2017-11-14 13:26:26
+ * @date 2017-11-21 09:40:58
  */
 @Controller
 @RequestMapping("/lteBuildingFloorController")
@@ -83,6 +88,7 @@ public class LteBuildingFloorController extends BaseController {
      * @param request
      * @param response
      * @param dataGrid
+     * @param user
      */
 
     @RequestMapping(params = "datagrid")
@@ -156,6 +162,7 @@ public class LteBuildingFloorController extends BaseController {
     /**
      * 添加lte_building_floor
      *
+     * @param ids
      * @return
      */
     @RequestMapping(params = "doAdd")
@@ -179,6 +186,7 @@ public class LteBuildingFloorController extends BaseController {
     /**
      * 更新lte_building_floor
      *
+     * @param ids
      * @return
      */
     @RequestMapping(params = "doUpdate")
@@ -378,25 +386,5 @@ public class LteBuildingFloorController extends BaseController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") String id) {
         lteBuildingFloorService.deleteEntityById(LteBuildingFloorEntity.class, id);
-    }
-
-    /**
-     * 测试导出Word
-     *
-     * @return
-     */
-    @RequestMapping(params = "addExportWord")
-    @ResponseBody
-    public AjaxJson addExportWord(HttpServletRequest request) {
-        AjaxJson ajaxJson = new AjaxJson();
-        try {
-            lteBuildingFloorService.addExportWord();
-            ajaxJson.setMsg("导出成功");
-        } catch (Exception e) {
-            e.printStackTrace();
-            ajaxJson.setMsg("导出失败");
-            throw new BusinessException(e.getMessage());
-        }
-        return ajaxJson;
     }
 }
