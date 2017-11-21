@@ -107,6 +107,20 @@ public class LteBuildingController extends BaseController {
     }
 
     /**
+     * 下拉列表
+     *
+     * @return
+     */
+    @RequestMapping(params = "listSel")
+    @ResponseBody
+    public AjaxJson listSel() {
+        AjaxJson ajaxJson = new AjaxJson();
+        List<LteBuildingEntity> lteBuildingServiceList = lteBuildingService.getList(LteBuildingEntity.class);
+        ajaxJson.setObj(lteBuildingServiceList);
+        return ajaxJson;
+    }
+
+    /**
      * 删除lte_building
      *
      * @return

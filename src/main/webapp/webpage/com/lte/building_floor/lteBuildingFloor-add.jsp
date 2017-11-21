@@ -7,6 +7,21 @@
     <t:base type="jquery,easyui,tools,DatePicker"></t:base>
     <script type="text/javascript">
         //编写自定义JS代码
+        $(function () {
+            $.ajax({
+                url: 'lteBuildingController.do?listSel',
+                dataType: 'json',
+                data: {},
+                success: function (ajaxJson) {
+                    var relustList = ajaxJson.obj;
+                    $.each(relustList, function (i, v) {
+                        $('#buildingId')
+                            .append($('<option>', {value: v.id})
+                                .text(v.buildingName));
+                    });
+                }
+            });
+        });
     </script>
 </head>
 <body>
@@ -22,8 +37,8 @@
             </td>
             <td class="value">
                 <select id="buildingId" name="buildingId" ignore="ignore">
-                    <option value="1">是</option>
-                    <option value="0">否</option>
+                        <%--<option value="1">是</option>--%>
+                        <%--<option value="0">否</option>--%>
                 </select>
                 <span class="Validform_checktip"></span>
                 <label class="Validform_label" style="display: none;">楼宇ID</label>

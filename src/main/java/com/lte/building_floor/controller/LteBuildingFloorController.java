@@ -53,7 +53,7 @@ import java.util.Set;
  * @author onlineGenerator
  * @version V1.0
  * @Title: Controller
- * @Description: lte_building_floor
+ * @Description: 楼层
  * @date 2017-11-21 09:40:58
  */
 @Controller
@@ -73,7 +73,7 @@ public class LteBuildingFloorController extends BaseController {
 
 
     /**
-     * lte_building_floor列表 页面跳转
+     * 楼层列表 页面跳转
      *
      * @return
      */
@@ -107,7 +107,7 @@ public class LteBuildingFloorController extends BaseController {
     }
 
     /**
-     * 删除lte_building_floor
+     * 删除楼层
      *
      * @return
      */
@@ -117,13 +117,13 @@ public class LteBuildingFloorController extends BaseController {
         String message = null;
         AjaxJson j = new AjaxJson();
         lteBuildingFloor = systemService.getEntity(LteBuildingFloorEntity.class, lteBuildingFloor.getId());
-        message = "lte_building_floor删除成功";
+        message = "楼层删除成功";
         try {
             lteBuildingFloorService.delete(lteBuildingFloor);
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "lte_building_floor删除失败";
+            message = "楼层删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -131,7 +131,7 @@ public class LteBuildingFloorController extends BaseController {
     }
 
     /**
-     * 批量删除lte_building_floor
+     * 批量删除楼层
      *
      * @return
      */
@@ -140,7 +140,7 @@ public class LteBuildingFloorController extends BaseController {
     public AjaxJson doBatchDel(String ids, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
-        message = "lte_building_floor删除成功";
+        message = "楼层删除成功";
         try {
             for (String id : ids.split(",")) {
                 LteBuildingFloorEntity lteBuildingFloor = systemService.getEntity(LteBuildingFloorEntity.class,
@@ -151,7 +151,7 @@ public class LteBuildingFloorController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "lte_building_floor删除失败";
+            message = "楼层删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -160,7 +160,7 @@ public class LteBuildingFloorController extends BaseController {
 
 
     /**
-     * 添加lte_building_floor
+     * 添加楼层
      *
      * @param ids
      * @return
@@ -170,13 +170,13 @@ public class LteBuildingFloorController extends BaseController {
     public AjaxJson doAdd(LteBuildingFloorEntity lteBuildingFloor, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
-        message = "lte_building_floor添加成功";
+        message = "楼层添加成功";
         try {
             lteBuildingFloorService.save(lteBuildingFloor);
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "lte_building_floor添加失败";
+            message = "楼层添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -184,7 +184,7 @@ public class LteBuildingFloorController extends BaseController {
     }
 
     /**
-     * 更新lte_building_floor
+     * 更新楼层
      *
      * @param ids
      * @return
@@ -194,7 +194,7 @@ public class LteBuildingFloorController extends BaseController {
     public AjaxJson doUpdate(LteBuildingFloorEntity lteBuildingFloor, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
-        message = "lte_building_floor更新成功";
+        message = "楼层更新成功";
         LteBuildingFloorEntity t = lteBuildingFloorService.get(LteBuildingFloorEntity.class, lteBuildingFloor.getId());
         try {
             MyBeanUtils.copyBeanNotNull2Bean(lteBuildingFloor, t);
@@ -202,7 +202,7 @@ public class LteBuildingFloorController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "lte_building_floor更新失败";
+            message = "楼层更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -211,7 +211,7 @@ public class LteBuildingFloorController extends BaseController {
 
 
     /**
-     * lte_building_floor新增页面跳转
+     * 楼层新增页面跳转
      *
      * @return
      */
@@ -225,7 +225,7 @@ public class LteBuildingFloorController extends BaseController {
     }
 
     /**
-     * lte_building_floor编辑页面跳转
+     * 楼层编辑页面跳转
      *
      * @return
      */
@@ -261,9 +261,9 @@ public class LteBuildingFloorController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(LteBuildingFloorEntity.class, dataGrid);
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, lteBuildingFloor, request.getParameterMap());
         List<LteBuildingFloorEntity> lteBuildingFloors = this.lteBuildingFloorService.getListByCriteriaQuery(cq, false);
-        modelMap.put(NormalExcelConstants.FILE_NAME, "lte_building_floor");
+        modelMap.put(NormalExcelConstants.FILE_NAME, "楼层");
         modelMap.put(NormalExcelConstants.CLASS, LteBuildingFloorEntity.class);
-        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("lte_building_floor列表", "导出人:" + ResourceUtil.getSessionUser().getRealName(),
+        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("楼层列表", "导出人:" + ResourceUtil.getSessionUser().getRealName(),
                 "导出信息"));
         modelMap.put(NormalExcelConstants.DATA_LIST, lteBuildingFloors);
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
@@ -278,9 +278,9 @@ public class LteBuildingFloorController extends BaseController {
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(LteBuildingFloorEntity lteBuildingFloor, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
-        modelMap.put(NormalExcelConstants.FILE_NAME, "lte_building_floor");
+        modelMap.put(NormalExcelConstants.FILE_NAME, "楼层");
         modelMap.put(NormalExcelConstants.CLASS, LteBuildingFloorEntity.class);
-        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("lte_building_floor列表", "导出人:" + ResourceUtil.getSessionUser().getRealName(),
+        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("楼层列表", "导出人:" + ResourceUtil.getSessionUser().getRealName(),
                 "导出信息"));
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
