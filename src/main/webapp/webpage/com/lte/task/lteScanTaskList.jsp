@@ -11,13 +11,15 @@
             <t:dgCol title="任务编号" field="taskNo" queryMode="group" width="120"></t:dgCol>
             <t:dgCol title="任务状态" field="taskStatus" queryMode="group" width="120"></t:dgCol>
             <t:dgCol title="报告状态" field="reportStatus" queryMode="group" width="120"></t:dgCol>
-            <t:dgCol title="任务备注" field="note" queryMode="group" width="120"></t:dgCol>
-            <t:dgCol title="创建人名称" field="createName" queryMode="group" width="120"></t:dgCol>
-            <t:dgCol title="创建人登录名称" field="createBy" queryMode="group" width="120"></t:dgCol>
-            <t:dgCol title="创建日期" field="createDate" formatter="yyyy-MM-dd" queryMode="group" width="120"></t:dgCol>
-            <t:dgCol title="更新人名称" field="updateName" queryMode="group" width="120"></t:dgCol>
-            <t:dgCol title="更新人登录名称" field="updateBy" queryMode="group" width="120"></t:dgCol>
-            <t:dgCol title="更新日期" field="updateDate" formatter="yyyy-MM-dd" queryMode="group" width="120"></t:dgCol>
+            <t:dgCol title="任务备注" field="note" hidden="true" queryMode="group" width="500"></t:dgCol>
+            <t:dgCol title="创建人名称" field="createName" hidden="true" queryMode="group" width="120"></t:dgCol>
+            <t:dgCol title="创建人登录名称" field="createBy" hidden="true" queryMode="group" width="120"></t:dgCol>
+            <t:dgCol title="创建日期" field="createDate" formatter="yyyy-MM-dd" hidden="true" queryMode="group"
+                     width="120"></t:dgCol>
+            <t:dgCol title="更新人名称" field="updateName" hidden="true" queryMode="group" width="120"></t:dgCol>
+            <t:dgCol title="更新人登录名称" field="updateBy" hidden="true" queryMode="group" width="120"></t:dgCol>
+            <t:dgCol title="更新日期" field="updateDate" formatter="yyyy-MM-dd" hidden="true" queryMode="group"
+                     width="120"></t:dgCol>
             <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
             <t:dgDelOpt title="删除" url="lteScanTaskController.do?doDel&id={id}" urlclass="ace_button"
                         urlfont="fa-trash-o"/>
@@ -38,7 +40,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
     });
-
 
     //导入
     function ImportXls() {
