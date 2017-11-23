@@ -2,9 +2,9 @@
 <html>
 <head>
     <base href="http://localhost:8079/"/>
-    <title></title>
+    <title>订单信息</title>
     <style type="text/css">
-        .Button{
+        .Button {
             display: inline-block;
             outline: none;
             cursor: pointer;
@@ -15,9 +15,9 @@
             -webkit-border-radius: .5em;
             -moz-border-radius: .5em;
             border-radius: .5em;
-            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-            box-shadow: 0 1px 2px rgba(0,0,0,.2);
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
             color: #fef4e9;
             border: solid 1px #1D73F7;
             background: #1D73F7;
@@ -25,238 +25,895 @@
         }
 
     </style>
-    <script type="text/javascript" src="http://localhost:8079/plug-in/jquery/jquery-1.8.3.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/tools/dataformat.js"></script><link rel="stylesheet" type="text/css" href="http://localhost:8079/plug-in/accordion/css/accordion.css"><link id="easyuiTheme" rel="stylesheet" href="http://localhost:8079/plug-in/easyui/themes/metrole/easyui.css" type="text/css"></link><link id="easyuiTheme" rel="stylesheet" href="plug-in/easyui/themes/metrole/icon.css" type="text/css"></link><script type="text/javascript" src="http://localhost:8079/plug-in/easyui/jquery.easyui.min.1.3.2.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/easyui/locale/zh-cn.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/tools/syUtil.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/My97DatePicker/WdatePicker.js"></script><link rel="stylesheet" href="http://localhost:8079/plug-in/tools/css/metrole/common.css" type="text/css"></link><link rel="stylesheet" href="http://localhost:8079/plug-in/ace/css/font-awesome.css" type="text/css"></link><script type="text/javascript" src="http://localhost:8079/plug-in/lhgDialog/lhgdialog.min.js?skin=metrole"></script><script type="text/javascript" src="http://localhost:8079/plug-in/layer/layer.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/tools/curdtools_zh-cn.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/tools/easyuiextend.js"></script><link id="easyuiTheme" rel="stylesheet" href="http://localhost:8079/plug-in/easyui/themes/metrole/main.css" type="text/css"></link><link rel="stylesheet" href="http://localhost:8079/plug-in/uploadify/css/uploadify.css" type="text/css"></link><script type="text/javascript" src="http://localhost:8079/plug-in/uploadify/jquery.uploadify-3.1.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/tools/Map.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/Validform/js/Validform_v5.3.1_min_zh-cn.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/Validform/js/Validform_Datatype_zh-cn.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/Validform/js/datatype_zh-cn.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/Validform/plugin/passwordStrength/passwordStrength-min.js"></script><link rel="stylesheet" href="http://localhost:8079/plug-in/Validform/css/metrole/style.css" type="text/css"/><link rel="stylesheet" href="http://localhost:8079/plug-in/Validform/css/metrole/tablefrom.css" type="text/css"/><script type="text/javascript" src="http://localhost:8079/plug-in/ueditor/ueditor.config.js"></script><script type="text/javascript" src="http://localhost:8079/plug-in/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/tools/dataformat.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8079/plug-in/accordion/css/accordion.css">
+    <link id="easyuiTheme" rel="stylesheet" href="http://localhost:8079/plug-in/easyui/themes/metrole/easyui.css"
+          type="text/css"></link>
+    <link id="easyuiTheme" rel="stylesheet" href="plug-in/easyui/themes/metrole/icon.css" type="text/css"></link>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/easyui/jquery.easyui.min.1.3.2.js"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/easyui/locale/zh-cn.js"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/tools/syUtil.js"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/My97DatePicker/WdatePicker.js"></script>
+    <link rel="stylesheet" href="http://localhost:8079/plug-in/tools/css/metrole/common.css" type="text/css"></link>
+    <link rel="stylesheet" href="http://localhost:8079/plug-in/ace/css/font-awesome.css" type="text/css"></link>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/lhgDialog/lhgdialog.min.js?skin=metrole"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/layer/layer.js"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/tools/curdtools_zh-cn.js"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/tools/easyuiextend.js"></script>
+    <link id="easyuiTheme" rel="stylesheet" href="http://localhost:8079/plug-in/easyui/themes/metrole/main.css"
+          type="text/css"></link>
+    <link rel="stylesheet" href="http://localhost:8079/plug-in/uploadify/css/uploadify.css" type="text/css"></link>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/uploadify/jquery.uploadify-3.1.js"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/tools/Map.js"></script>
+    <script type="text/javascript"
+            src="http://localhost:8079/plug-in/Validform/js/Validform_v5.3.1_min_zh-cn.js"></script>
+    <script type="text/javascript"
+            src="http://localhost:8079/plug-in/Validform/js/Validform_Datatype_zh-cn.js"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/Validform/js/datatype_zh-cn.js"></script>
+    <script type="text/javascript"
+            src="http://localhost:8079/plug-in/Validform/plugin/passwordStrength/passwordStrength-min.js"></script>
+    <link rel="stylesheet" href="http://localhost:8079/plug-in/Validform/css/metrole/style.css" type="text/css"/>
+    <link rel="stylesheet" href="http://localhost:8079/plug-in/Validform/css/metrole/tablefrom.css" type="text/css"/>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="http://localhost:8079/plug-in/ueditor/ueditor.all.js"></script>
 </head>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tt').tabs({
+            onSelect: function (title) {
+                $('#tt .panel-body').css('width', 'auto');
+            }
+        });
+        $(".tabs-wrap").css('width', '100%');
+    });
+
+    //初始化下标
+    function resetTrNum(tableId) {
+        $tbody = $("#" + tableId + "");
+        $tbody.find('>tr').each(function (i) {
+            $(':input, select, button, a', this).each(function () {
+                var $this = $(this), name = $this.attr('name'), id = $this.attr('id'),
+                    onclick_str = $this.attr('onclick'), val = $this.val();
+                if (name != null) {
+                    if (name.indexOf("#index#") >= 0) {
+                        $this.attr("name", name.replace('#index#', i));
+                    } else {
+                        var s = name.indexOf("[");
+                        var e = name.indexOf("]");
+                        var new_name = name.substring(s + 1, e);
+                        $this.attr("name", name.replace(new_name, i));
+                    }
+                }
+                if (id != null) {
+                    if (id.indexOf("#index#") >= 0) {
+                        $this.attr("id", id.replace('#index#', i));
+                    } else {
+                        var s = id.indexOf("[");
+                        var e = id.indexOf("]");
+                        var new_id = id.substring(s + 1, e);
+                        $this.attr("id", id.replace(new_id, i));
+                    }
+                }
+                if (onclick_str != null) {
+                    if (onclick_str.indexOf("#index#") >= 0) {
+                        $this.attr("onclick", onclick_str.replace(/#index#/g, i));
+                    } else {
+                    }
+                }
+            });
+            $(this).find('div[name=\'xh\']').html(i + 1);
+        });
+    }
+</script>
 <body>
-<form id="formobj" action="http://localhost:8079/cgFormBuildController.do?saveOrUpdate" name="formobj" method="post">
-    <input type="hidden" id="btn_sub" class="btn_sub"/>
-    <input type="hidden" name="tableName" value="lte_building_floor" >
-    <input type="hidden" name="id" value="" >
-    <input type="hidden" id="create_name" name="create_name" value="" >
-    <input type="hidden" id="create_by" name="create_by" value="" >
-    <input type="hidden" id="create_date" name="create_date" value="" >
-    <input type="hidden" id="update_name" name="update_name" value="" >
-    <input type="hidden" id="update_by" name="update_by" value="" >
-    <input type="hidden" id="update_date" name="update_date" value="" >
+<form id="formobj" action="http://localhost:8079/cgFormBuildController.do?saveOrUpdateMore" name="formobj"
+      method="post"><input type="hidden" id="btn_sub" class="btn_sub"/>
+    <input type="hidden" name="tableName" value="test_person">
+    <input type="hidden" name="id" value="">
+    <input type="hidden" id="create_name" name="create_name" value="">
+    <input type="hidden" id="create_by" name="create_by" value="">
+    <input type="hidden" id="create_date" name="create_date" value="">
+    <input type="hidden" id="update_name" name="update_name" value="">
+    <input type="hidden" id="update_by" name="update_by" value="">
+    <input type="hidden" id="update_date" name="update_date" value="">
+    <input type="hidden" id="sys_org_code" name="sys_org_code" value="">
+    <input type="hidden" id="sys_company_code" name="sys_company_code" value="">
+    <input type="hidden" id="bpm_status" name="bpm_status" value="">
     <table cellpadding="0" cellspacing="1" class="formtable">
         <tr>
-            <td align="right" >
+            <td align="right">
                 <label class="Validform_label">
-                    楼宇ID:
+                    名字:
                 </label>
             </td>
             <td class="value">
-                <input id="building_id"  name="building_id"  type="text"
+                <input id="name" name="name" type="text"
                        style="width: 150px" class="searchbox-inputtext"
-                       onClick="popupClick(this,'id','building_id','pomp_building');"
                        value=""
                        ignore="checked"
+                       onClick="inputClick(this,'realname','user_msg');"
+                       datatype="s"
+                >
+
+                <span class="Validform_checktip"></span>
+                <label class="Validform_label" style="display: none;">名字</label>
+            </td>
+            <td align="right">
+                <label class="Validform_label">
+                    性别:
+                </label>
+            </td>
+            <td class="value">
+                <input id="sex" type="text"
+                       style="width: 150px" class="inputxt"
+                       ignore="ignore"
+                       datatype="*"
+                       onclick="showSexTree();" readonly="readonly">
+                <input type="hidden" id="sexId" name="sex" value="" class="showSex">
+                <div id="showSexTreeContent" class="menuContent"
+                     style="display: none; position: absolute; border: 1px #CCC solid; background-color: #F0F6E4;z-index:9999;">
+                    <ul id="showSexTree" class="ztree" style="margin-top:0;"></ul>
+                </div>
+                <script>
+                    $(function () {
+                        if (!$.fn.zTree) {
+                            $("head").append('<link rel="stylesheet" href="http://localhost:8079/plug-in/ztree/css/zTreeStyle.css"/>');
+                            $("head").append('<script type=\"text/javascript\" src=\"http://localhost:8079/plug-in/ztree/js/jquery.ztree.core-3.5.min.js\"><\/script>');
+                            $("head").append('<script type=\"text/javascript\" src=\"http://localhost:8079/plug-in/ztree/js/jquery.ztree.excheck-3.5.min.js\"><\/script>');
+                        }
+                        var defaultVal = $("#sexId").val();
+                        if (defaultVal != null && defaultVal != '') {
+                            if (defaultVal.indexOf(",") > -1) {
+                                var defaultValArray = defaultVal.split(",");
+                                var resultValue = "";
+                                for (var i = 0; i < defaultValArray.length; i++) {
+                                    var result = $.ajax({
+                                        url: 'http://localhost:8079/categoryController.do?tree',
+                                        type: 'POST',
+                                        dataType: 'JSON',
+                                        data: {
+                                            selfCode: defaultValArray[i]
+                                        },
+                                        async: false
+                                    });
+                                    var responseText = result.responseText;
+                                    if (typeof responseText == 'string') {
+                                        responseText = JSON.parse(responseText);
+                                    }
+                                    if (resultValue != '') {
+                                        resultValue = resultValue + "," + responseText[0].text;
+                                    } else {
+                                        resultValue = responseText[0].text;
+                                    }
+                                }
+                                $("#sex").val(resultValue);
+                            } else {
+                                $.ajax({
+                                    url: 'http://localhost:8079/categoryController.do?tree',
+                                    type: 'POST',
+                                    dataType: 'JSON',
+                                    data: {
+                                        selfCode: defaultVal
+                                    },
+                                    success: function (res) {
+                                        if (typeof res == 'object') {
+                                            var value = res[0].text;
+                                            $("#sex").val(value);
+                                        }
+                                    }
+                                });
+                            }
+
+                        }
+                        $("body").bind("mousedown", onBodyDownBySex);
+                    });
+
+                    var sexSetting = {
+                        check: {
+                            enable: true
+                        },
+                        view: {
+                            dblClickExpand: false
+                        },
+                        data: {
+                            simpleData: {
+                                enable: true
+                            },
+                            key: {
+                                name: 'text'
+                            }
+                        },
+                        callback: {
+                            onClick: sexOnClick,
+                            onCheck: sexOnCheck
+                        }
+                    };
+
+                    function sexOnCheck(e, treeId, treeNode) {
+                        var idVal = $("#sexId").val();
+                        var textVal = $("#sex").val();
+                        if (treeNode.checked) {
+                            //选中
+                            if (idVal != null && idVal != '') {
+                                $("#sexId").val(idVal + ',' + treeNode.id);
+                            } else {
+                                $("#sexId").val(treeNode.id);
+                            }
+                            if (textVal != null && textVal != '') {
+                                $("#sex").val(textVal + ',' + treeNode.text);
+                            } else {
+                                $("#sex").val(treeNode.text);
+                            }
+                        } else {
+                            idVal = idVal.replace(treeNode.id, "");
+                            if (idVal.indexOf(",") == 0) {
+                                idVal = idVal.substring(1);
+                            } else if (idVal.indexOf(",,") > -1) {
+                                idVal = idVal.replace(",,", ",");
+                            } else if (idVal.indexOf(",") == idVal.length - 1) {
+                                idVal = idVal.substring(0, idVal.length - 1);
+                            }
+                            textVal = textVal.replace(treeNode.text, "");
+                            if (textVal.indexOf(",") == 0) {
+                                textVal = textVal.substring(1);
+                            } else if (textVal.indexOf(",,") > -1) {
+                                textVal = textVal.replace(",,", ",");
+                            } else if (textVal.indexOf(",") == textVal.length - 1) {
+                                textVal = textVal.substring(0, textVal.length - 1);
+                            }
+                            $("#sex").val(textVal);
+                            $("#sexId").val(idVal);
+                        }
+                        e.stopPropagation();
+                    }
+
+                    function sexOnClick(e, treeId, treeNode) {
+                        var zTree = $.fn.zTree.getZTreeObj("showSexTree");
+                        zTree.checkNode(treeNode, !treeNode.checked, true, true);
+                        e.stopPropagation();
+                    }
+
+                    function showSexTree() {
+                        if ($("#showSexTreeContent").is(":hidden")) {
+                            $.ajax({
+                                url: 'http://localhost:8079/categoryController.do?tree',
+                                type: 'POST',
+                                dataType: 'JSON',
+                                async: false,
+                                success: function (res) {
+                                    var obj = res;
+                                    $.fn.zTree.init($("#showSexTree"), sexSetting, obj);
+                                    var deptObj = $("#sex");
+                                    var deptOffset = $("#sex").offset();
+                                    $("#showSexTreeContent").css({
+                                        left: deptOffset.left + "px",
+                                        top: deptOffset.top + deptObj.outerHeight() + "px"
+                                    }).slideDown("fast");
+                                    $('#showSexTree').css({width: deptObj.outerWidth() - 12 + "px"});
+                                    var zTree = $.fn.zTree.getZTreeObj("showSexTree");
+                                    var idVal = $("#sexId").val();
+                                    if (idVal != null && idVal != '') {
+                                        if (idVal.indexOf(",") > -1) {
+                                            var idArray = idVal.split(",");
+                                            for (var i = 0; i < idArray.length; i++) {
+                                                var node = zTree.getNodeByParam("id", idArray[i], null);
+                                                zTree.checkNode(node, true, true);
+                                            }
+                                        } else {
+                                            var node = zTree.getNodeByParam("id", idVal, null);
+                                            zTree.checkNode(node, true, true);
+                                        }
+                                    }
+                                    //$("#showSexTreeContent").bind("mousedown",SexTreeContentClick);
+                                }
+                            });
+                        }
+                    }
+
+                    function onBodyDownBySex(event) {
+                        if (event.target.id == '' || (event.target.id.indexOf('switch') == -1
+                                && event.target.id.indexOf('check') == -1
+                                && event.target.id.indexOf('span') == -1
+                                && event.target.id.indexOf('ico') == -1)) {
+                            $("#showSexTreeContent").fadeOut("fast");
+                            //$("body").unbind("mousedown", onBodyDownBySex);
+                        }
+                    }
+
+                    function SexTreeContentClick(event) {
+                        event = event || window.event;
+                        event.stopPropagation();
+                    }
+                </script>
+                <span class="Validform_checktip"></span>
+                <label class="Validform_label" style="display: none;">性别</label>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <label class="Validform_label">
+                    生日:
+                </label>
+            </td>
+            <td class="value">
+                <input id="birthday" name="birthday" type="text"
+                       style="width: 150px" value=""
+                       class="Wdate" onClick="WdatePicker({})"
+                       ignore="ignore"
 
                        datatype="*"
                 >
 
                 <span class="Validform_checktip"></span>
-                <label class="Validform_label" style="display: none;">楼宇ID</label>
+                <label class="Validform_label" style="display: none;">生日</label>
             </td>
-        </tr>
-        <tr>
-            <td align="right" >
+            <td align="right">
                 <label class="Validform_label">
-                    楼层名称:
+                    测性别:
                 </label>
             </td>
             <td class="value">
-                <select id="floor_name"  name="floor_name"
+                <select id="cexs" name="cexs"
                         ignore="ignore"
+                <option value="0"
                 >
-                    <option value="1"
-                    >
-                        是
-                    </option>
-                    <option value="0"
-                    >
-                        否
-                    </option>
+                    男性
+                </option>
+                <option value="1"
+                >
+                    女性
+                </option>
                 </select>
 
                 <span class="Validform_checktip"></span>
-                <label class="Validform_label" style="display: none;">楼层名称</label>
+                <label class="Validform_label" style="display: none;">测性别</label>
             </td>
         </tr>
         <tr>
-            <td align="right" >
+            <td align="right">
                 <label class="Validform_label">
-                    楼层编号:
+                    工资:
                 </label>
             </td>
             <td class="value">
-                <input id="floor_no"  name="floor_no" type="text"
+                <input id="salary" name="salary" type="text"
                        style="width: 150px" class="inputxt" value=""
-
                        ignore="ignore"
 
+                       datatype="d"
                 >
+
                 <span class="Validform_checktip"></span>
-                <label class="Validform_label" style="display: none;">楼层编号</label>
+                <label class="Validform_label" style="display: none;">工资</label>
+            </td>
+            <td align="right">
+                <label class="Validform_label">
+                    简历附件:
+                </label>
+            </td>
+            <td class="value">
+                <table>
+                </table>
+                <div class="form jeecgDetail">
+                    <script type="text/javascript">
+                        var serverMsg = "";
+                        var m = new Map();
+                        $(function () {
+                            $('#fiel_jls').uploadify(
+                                {
+                                    buttonText: '添加文件',
+                                    auto: false,
+                                    progressData: 'speed',
+                                    multi: true,
+                                    height: 25,
+                                    overrideEvents: ['onDialogClose'],
+                                    fileTypeDesc: '文件格式:',
+                                    queueID: 'filediv_fiel_jls',
+                                    fileSizeLimit: '15MB', swf: 'http://localhost:8079/plug-in/uploadify/uploadify.swf',
+                                    uploader: 'http://localhost:8079/cgUploadController.do?saveFiles&jsessionid=' + $("#sessionUID").val() + '',
+                                    onUploadStart: function (file) {
+                                        var cgFormId = $("input[name='id']").val();
+                                        $('#fiel_jls').uploadify("settings", "formData", {
+                                            'cgFormId': cgFormId,
+                                            'cgFormName': 'test_person',
+                                            'cgFormField': 'fiel_jls'
+                                        });
+                                    },
+                                    onQueueComplete: function (queueData) {
+                                        var win = frameElement.api.opener;
+                                        win.reloadTable();
+                                        win.tip(serverMsg);
+                                        frameElement.api.close();
+                                    },
+                                    onUploadSuccess: function (file, data, response) {
+                                        var d = $.parseJSON(data);
+                                        if (d.success) {
+                                            var win = frameElement.api.opener;
+                                            serverMsg = d.msg;
+                                        }
+                                    }, onFallback: function () {
+                                    tip("您未安装FLASH控件，无法上传图片！请安装FLASH控件后再试")
+                                }, onSelectError: function (file, errorCode, errorMsg) {
+                                    switch (errorCode) {
+                                        case -100:
+                                            tip("上传的文件数量已经超出系统限制的" + $('#fiel_jls').uploadify('settings', 'queueSizeLimit') + "个文件！");
+                                            break;
+                                        case -110:
+                                            tip("文件 [" + file.name + "] 大小超出系统限制的" + $('#fiel_jls').uploadify('settings', 'fileSizeLimit') + "大小！");
+                                            break;
+                                        case -120:
+                                            tip("文件 [" + file.name + "] 大小异常！");
+                                            break;
+                                        case -130:
+                                            tip("文件 [" + file.name + "] 类型不正确！");
+                                            break;
+                                    }
+                                },
+                                    onUploadProgress: function (file, bytesUploaded, bytesTotal, totalBytesUploaded, totalBytesTotal) {
+                                    }
+                                });
+                        });
+
+                    </script>
+                    <span id="file_uploadspan"><input type="file" name="fiel_jls" id="fiel_jls"/></span>
+                </div>
+                <div class="form" id="filediv_fiel_jls"></div>
+                <span class="Validform_checktip"></span>
+                <label class="Validform_label" style="display: none;">简历附件</label>
             </td>
         </tr>
         <tr>
-            <td align="right" >
+            <td align="right">
                 <label class="Validform_label">
-                    楼层属性:
+                    个人头像:
                 </label>
             </td>
             <td class="value">
-                <input id="floor_property"  name="floor_property" type="text"
-                       style="width: 150px" class="inputxt" value=""
+                <table>
+                </table>
+                <div class="form jeecgDetail">
+                    <script type="text/javascript">
+                        var serverMsg = "";
+                        var m = new Map();
+                        $(function () {
+                            $('#tou_pic').uploadify(
+                                {
+                                    buttonText: '添加图片',
+                                    auto: false,
+                                    progressData: 'speed',
+                                    multi: true,
+                                    height: 25,
+                                    overrideEvents: ['onDialogClose'],
+                                    fileTypeDesc: '图片格式:',
+                                    queueID: 'imagediv_tou_pic',
+                                    fileTypeExts: '*.jpg;*.jpeg;*.gif;*.png;*.bmp',
+                                    fileSizeLimit: '15MB', swf: 'http://localhost:8079/plug-in/uploadify/uploadify.swf',
+                                    uploader: 'http://localhost:8079/cgUploadController.do?saveFiles&jsessionid=' + $("#sessionUID").val() + '',
+                                    onUploadStart: function (file) {
+                                        var cgFormId = $("input[name='id']").val();
+                                        $('#tou_pic').uploadify("settings", "formData", {
+                                            'cgFormId': cgFormId,
+                                            'cgFormName': 'test_person',
+                                            'cgFormField': 'tou_pic'
+                                        });
+                                    },
+                                    onQueueComplete: function (queueData) {
+                                        var win = frameElement.api.opener;
+                                        win.reloadTable();
+                                        win.tip(serverMsg);
+                                        frameElement.api.close();
+                                    },
+                                    onUploadSuccess: function (file, data, response) {
+                                        var d = $.parseJSON(data);
+                                        if (d.success) {
+                                            var win = frameElement.api.opener;
+                                            serverMsg = d.msg;
+                                        }
+                                    }, onFallback: function () {
+                                    tip("您未安装FLASH控件，无法上传图片！请安装FLASH控件后再试")
+                                }, onSelectError: function (file, errorCode, errorMsg) {
+                                    switch (errorCode) {
+                                        case -100:
+                                            tip("上传的文件数量已经超出系统限制的" + $('#tou_pic').uploadify('settings', 'queueSizeLimit') + "个文件！");
+                                            break;
+                                        case -110:
+                                            tip("文件 [" + file.name + "] 大小超出系统限制的" + $('#tou_pic').uploadify('settings', 'fileSizeLimit') + "大小！");
+                                            break;
+                                        case -120:
+                                            tip("文件 [" + file.name + "] 大小异常！");
+                                            break;
+                                        case -130:
+                                            tip("文件 [" + file.name + "] 类型不正确！");
+                                            break;
+                                    }
+                                },
+                                    onUploadProgress: function (file, bytesUploaded, bytesTotal, totalBytesUploaded, totalBytesTotal) {
+                                    }
+                                });
+                        });
 
-                       ignore="ignore"
-
-                >
+                    </script>
+                    <span id="image_uploadspan"><input type="file" name="tou_pic" id="tou_pic"/></span>
+                </div>
+                <div class="form" id="imagediv_tou_pic"></div>
                 <span class="Validform_checktip"></span>
-                <label class="Validform_label" style="display: none;">楼层属性</label>
+                <label class="Validform_label" style="display: none;">个人头像</label>
+            </td>
+            <td align="right">
+                <label class="Validform_label">
+                </label>
+            </td>
+            <td class="value">
             </td>
         </tr>
 
         <tr>
             <td align="right">
                 <label class="Validform_label">
-                    楼层描述:
+                    个人简介:
                 </label>
             </td>
-            <td class="value">
-						<textarea id="description"  name="description"  rows="7" style="width:500px;"
-                                  ignore="ignore"
+            <td class="value" colspan="3">
+						<textarea id="conets" name="conets" style="width:500px;
+						        rows=" 6"
+                ignore="ignore"
 
 
-                        ></textarea>
+                ></textarea>
                 <span class="Validform_checktip"></span>
-                <label class="Validform_label" style="display: none;">楼层描述</label>
+                <label class="Validform_label" style="display: none;">个人简介</label>
                 <script type="text/javascript">
                     //实例化编辑器
-                    var description_ue = UE.getEditor('description',{initialFrameWidth:500}).setHeight(260);
+                    var conets_ue = UE.getEditor('conets', {initialFrameWidth: 500}).setHeight(260);
                 </script>
             </td>
         </tr>
-        <tr>
-            <td align="right">
-                <label class="Validform_label">
-                    楼宇备注:
-                </label>
-            </td>
-            <td class="value">
-						<textarea id="note"  name="note"  rows="7" style="width:500px;"
-                                  ignore="ignore"
-
-
-                        ></textarea>
-                <span class="Validform_checktip"></span>
-                <label class="Validform_label" style="display: none;">楼宇备注</label>
-            </td>
-        </tr>
-        <tr id = "sub_tr" style="display: none;">
-            <td colspan="2" align="center">
-                <input type="button" value="提交" onclick="neibuClick();" class="Button">
-            </td>
-        </tr>
     </table>
-    <script type="text/javascript">$(function(){$("#formobj").Validform({tiptype:function(msg,o,cssctl){if(o.type == 3){layer.open({title:'提示信息',content:msg,icon:5,shift:6,btn:false,shade:false,time:5000,cancel:function(index){o.obj.focus();layer.close(index);},yes:function(index){o.obj.focus();layer.close(index);},})}},btnSubmit:"#btn_sub",btnReset:"#btn_reset",ajaxPost:true,usePlugin:{passwordstrength:{minLen:6,maxLen:18,trigger:function(obj,error){if(error){obj.parent().next().find(".Validform_checktip").show();obj.find(".passwordStrength").hide();}else{$(".passwordStrength").show();obj.parent().next().find(".Validform_checktip").hide();}}}},callback:function(data){if(data.success==true){uploadFile(data);}else{if(data.responseText==''||data.responseText==undefined){$.messager.alert('错误', data.msg);$.Hidemsg();}else{try{var emsg = data.responseText.substring(data.responseText.indexOf('错误描述'),data.responseText.indexOf('错误信息')); $.messager.alert('错误',emsg);$.Hidemsg();}catch(ex){$.messager.alert('错误',data.responseText+'');}} return false;}if(!neibuClickFlag){var win = frameElement.api.opener; win.reloadTable();}}});});</script>
-</form>
-<script type="text/javascript">
-    $(function(){
-        //查看模式情况下,删除和上传附件功能禁止使用
-        if(location.href.indexOf("goDetail.do")!=-1){
-            $(".jeecgDetail").hide();
+
+
+    <script type="text/javascript">
+        $(function () {
+            //查看模式情况下,删除和上传附件功能禁止使用
+            if (location.href.indexOf("goDetail.do") != -1) {
+                $(".jeecgDetail").hide();
+            }
+
+            if (location.href.indexOf("goDetail.do") != -1) {
+                //查看模式控件禁用
+                $("#formobj").find(":input").attr("disabled", "disabled");
+            }
+            if (location.href.indexOf("goAddButton.do") != -1 || location.href.indexOf("goUpdateButton.do") != -1) {
+                //其他模式显示提交按钮
+                $("#sub_tr").show();
+            }
+        });
+
+        function upload() {
+            $('#fiel_jls').uploadify('upload', '*');
+            $('#tou_pic').uploadify('upload', '*');
         }
 
-        if(location.href.indexOf("goDetail.do")!=-1){
-            //查看模式控件禁用
-            $("#formobj").find(":input").attr("disabled","disabled");
+        var neibuClickFlag = false;
+
+        function neibuClick() {
+            neibuClickFlag = true;
+            $('#btn_sub').trigger('click');
         }
-        if(location.href.indexOf("goAddButton.do")!=-1||location.href.indexOf("goUpdateButton.do")!=-1){
-            //其他模式显示提交按钮
-            $("#sub_tr").show();
+
+        function cancel() {
+            $('#fiel_jls').uploadify('cancel', '*');
+            $('#tou_pic').uploadify('cancel', '*');
         }
-    });
-    function upload() {
-    }
-    var neibuClickFlag = false;
-    function neibuClick() {
-        neibuClickFlag = true;
-        $('#btn_sub').trigger('click');
-    }
-    function cancel() {
-    }
-    function uploadFile(data){
-        if(!$("input[name='id']").val()){
-            if(data.obj!=null && data.obj!='undefined'){
-                $("input[name='id']").val(data.obj.id);
+
+        function uploadFile(data) {
+            if (!$("input[name='id']").val()) {
+                if (data.obj != null && data.obj != 'undefined') {
+                    $("input[name='id']").val(data.obj.id);
+                }
+            }
+            if ($(".uploadify-queue-item").length > 0) {
+                upload();
+            } else {
+                if (neibuClickFlag) {
+                    alert(data.msg);
+                    neibuClickFlag = false;
+                } else {
+                    var win = frameElement.api.opener;
+                    win.reloadTable();
+                    win.tip(data.msg);
+                    frameElement.api.close();
+                }
             }
         }
-        if($(".uploadify-queue-item").length>0){
-            upload();
-        }else{
-            if (neibuClickFlag){
-                alert(data.msg);
-                neibuClickFlag = false;
-            }else {
-                var win = frameElement.api.opener;
-                win.reloadTable();
-                win.tip(data.msg);
-                frameElement.api.close();
-            }
+
+        $.dialog.setting.zIndex = getzIndex();
+
+        function del(url, obj) {
+            $.dialog.confirm("确认删除该条记录?", function () {
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: 'POST',
+                    url: url,// 请求的action路径
+                    error: function () {// 请求失败处理函数
+                    },
+                    success: function (data) {
+                        var d = $.parseJSON(data);
+                        if (d.success) {
+                            var msg = d.msg;
+                            tip(msg);
+                            $(obj).closest("tr").hide("slow");
+                        }
+                    }
+                });
+            }, function () {
+            });
         }
-    }
-    $.dialog.setting.zIndex =9999;
-    function del(url,obj){
-        $.dialog.confirm("确认删除该条记录?", function(){
-            $.ajax({
-                async : false,
-                cache : false,
-                type : 'POST',
-                url : url,// 请求的action路径
-                error : function() {// 请求失败处理函数
-                },
-                success : function(data) {
-                    var d = $.parseJSON(data);
-                    if (d.success) {
-                        var msg = d.msg;
-                        tip(msg);
-                        $(obj).closest("tr").hide("slow");
+
+    </script>
+    <div style="width: auto;height: 200px;">
+        <div style="width:690px;height:1px;"></div>
+        <div id="tt" tabPosition="top" border=flase style="margin:0px;padding:0px;overflow:hidden;width:auto;"
+             class="easyui-tabs" fit="false">
+
+            <div title="通迅录分组" style="margin:0px;padding:0px;overflow:hidden;">
+                <script type="text/javascript">
+                    $('#addBtn_jform_contact_group').linkbutton({
+                        iconCls: 'icon-add'
+                    });
+                    $('#delBtn_jform_contact_group').linkbutton({
+                        iconCls: 'icon-remove'
+                    });
+                    $('#addBtn_jform_contact_group').bind('click', function () {
+                        var tr = $("#add_jform_contact_group_table_template tr").clone();
+                        $("#add_jform_contact_group_table").append(tr);
+                        resetTrNum('add_jform_contact_group_table');
+                        return false;
+                    });
+                    $('#delBtn_jform_contact_group').bind('click', function () {
+                        $("#add_jform_contact_group_table").find("input:checked").parent().parent().remove();
+                        resetTrNum('add_jform_contact_group_table');
+                        return false;
+                    });
+                    $(document).ready(function () {
+                        $(".datagrid-toolbar").parent().css("width", "auto");
+                        if (location.href.indexOf("load=detail") != -1) {
+                            $(".datagrid-toolbar").hide();
+                            $(":input").each(function () {
+                                var $thisThing = $(this);
+                                $thisThing.attr("title", $thisThing.val());
+                            });
+                        }
+                        resetTrNum('add_jform_contact_group_table');
+                    });
+                </script>
+                <div style="padding: 3px; height: 25px;width:auto;" class="datagrid-toolbar">
+                    <a id="addBtn_jform_contact_group" href="#">添加</a> <a id="delBtn_jform_contact_group"
+                                                                          href="#">删除</a>
+                </div>
+                <div style="width: auto;height: 400px;overflow-y:auto;overflow-x:scroll;">
+                    <table border="0" cellpadding="2" cellspacing="0" id="jform_contact_group_table">
+                        <tr bgcolor="#E6E6E6">
+                            <td align="center" bgcolor="#EEEEEE">序号</td>
+                            <td align="center" bgcolor="#EEEEEE">操作</td>
+                            <td align="left" bgcolor="#EEEEEE">分组名称</td>
+                            <td align="left" bgcolor="#EEEEEE">主表id</td>
+                        </tr>
+                        <tbody id="add_jform_contact_group_table">
+                        <tr>
+                            <td align="center">
+                                <div style="width: 25px;" name="xh"></div>
+                            </td>
+                            <td align="center">
+                                <input style="width:20px;" type="checkbox" name="ck"/>
+                                <input type="hidden" name="jform_contact_group[0].id" id="jform_contact_group[0].id"/>
+                                <input type="hidden" name="jform_contact_group[0].create_name"
+                                       id="jform_contact_group[0].create_name"/>
+                                <input type="hidden" name="jform_contact_group[0].create_by"
+                                       id="jform_contact_group[0].create_by"/>
+                                <input type="hidden" name="jform_contact_group[0].create_date"
+                                       id="jform_contact_group[0].create_date"/>
+                                <input type="hidden" name="jform_contact_group[0].update_name"
+                                       id="jform_contact_group[0].update_name"/>
+                                <input type="hidden" name="jform_contact_group[0].update_by"
+                                       id="jform_contact_group[0].update_by"/>
+                                <input type="hidden" name="jform_contact_group[0].update_date"
+                                       id="jform_contact_group[0].update_date"/>
+                                <input type="hidden" name="jform_contact_group[0].sys_org_code"
+                                       id="jform_contact_group[0].sys_org_code"/>
+                                <input type="hidden" name="jform_contact_group[0].sys_company_code"
+                                       id="jform_contact_group[0].sys_company_code"/>
+                                <input type="hidden" name="jform_contact_group[0].bpm_status"
+                                       id="jform_contact_group[0].bpm_status"/>
+                            </td>
+                            <td align="left">
+                                <input id="jform_contact_group[0].name" name="jform_contact_group[0].name" type="text"
+                                       style="width: 120px" class="inputxt"
+                                       nullmsg="请输入分组名称！"
+
+                                       ignore="checked"
+                                       datatype="*"
+                                >
+
+                                <label class="Validform_label" style="display: none;">分组名称</label>
+                            </td>
+                            <td align="left">
+                                <input id="jform_contact_group[0].person_id" name="jform_contact_group[0].person_id"
+                                       type="text"
+                                       style="width: 120px" class="inputxt"
+                                       nullmsg="请输入主表id！"
+
+                                       ignore="ignore"
+
+                                >
+
+                                <label class="Validform_label" style="display: none;">主表id</label>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div align="center" id="sub_tr" style="display: none;"><input type="button" value="提交"
+                                                                  onclick="$('#btn_sub').trigger('click');"
+                                                                  class="Button"></div>
+    <script type="text/javascript">$(function () {
+        $("#formobj").Validform({
+            tiptype: function (msg, o, cssctl) {
+                if (o.type == 3) {
+                    layer.open({
+                        title: '提示信息',
+                        content: msg,
+                        icon: 5,
+                        shift: 6,
+                        btn: false,
+                        shade: false,
+                        time: 5000,
+                        cancel: function (index) {
+                            o.obj.focus();
+                            layer.close(index);
+                        },
+                        yes: function (index) {
+                            o.obj.focus();
+                            layer.close(index);
+                        },
+                    })
+                }
+            },
+            btnSubmit: "#btn_sub",
+            btnReset: "#btn_reset",
+            ajaxPost: true,
+            usePlugin: {
+                passwordstrength: {
+                    minLen: 6, maxLen: 18, trigger: function (obj, error) {
+                        if (error) {
+                            obj.parent().next().find(".Validform_checktip").show();
+                            obj.find(".passwordStrength").hide();
+                        } else {
+                            $(".passwordStrength").show();
+                            obj.parent().next().find(".Validform_checktip").hide();
+                        }
                     }
                 }
-            });
-        }, function(){
+            },
+            callback: function (data) {
+                if (data.success == true) {
+                    uploadFile(data);
+                } else {
+                    if (data.responseText == '' || data.responseText == undefined) {
+                        $.messager.alert('错误', data.msg);
+                        $.Hidemsg();
+                    } else {
+                        try {
+                            var emsg = data.responseText.substring(data.responseText.indexOf('错误描述'), data.responseText.indexOf('错误信息'));
+                            $.messager.alert('错误', emsg);
+                            $.Hidemsg();
+                        } catch (ex) {
+                            $.messager.alert('错误', data.responseText + '');
+                        }
+                    }
+                    return false;
+                }
+                if (!neibuClickFlag) {
+                    var win = frameElement.api.opener;
+                    win.reloadTable();
+                }
+            }
+        });
+    });</script>
+</form>
+<!-- 添加 产品明细 模版 -->
+<table style="display:none">
+    <tbody id="add_jform_contact_group_table_template">
+    <tr>
+        <td align="center">
+            <div style="width: 25px;" name="xh"></div>
+        </td>
+        <td align="center">
+            <input style="width:20px;" type="checkbox" name="ck"/>
+            <input type="hidden" name="jform_contact_group[#index#].id" id="jform_contact_group[#index#].id"/>
+            <input type="hidden" name="jform_contact_group[#index#].create_name"
+                   id="jform_contact_group[#index#].create_name"/>
+            <input type="hidden" name="jform_contact_group[#index#].create_by"
+                   id="jform_contact_group[#index#].create_by"/>
+            <input type="hidden" name="jform_contact_group[#index#].create_date"
+                   id="jform_contact_group[#index#].create_date"/>
+            <input type="hidden" name="jform_contact_group[#index#].update_name"
+                   id="jform_contact_group[#index#].update_name"/>
+            <input type="hidden" name="jform_contact_group[#index#].update_by"
+                   id="jform_contact_group[#index#].update_by"/>
+            <input type="hidden" name="jform_contact_group[#index#].update_date"
+                   id="jform_contact_group[#index#].update_date"/>
+            <input type="hidden" name="jform_contact_group[#index#].sys_org_code"
+                   id="jform_contact_group[#index#].sys_org_code"/>
+            <input type="hidden" name="jform_contact_group[#index#].sys_company_code"
+                   id="jform_contact_group[#index#].sys_company_code"/>
+            <input type="hidden" name="jform_contact_group[#index#].bpm_status"
+                   id="jform_contact_group[#index#].bpm_status"/>
+        </td>
+        <td align="left">
+            <input id="jform_contact_group[#index#].name" name="jform_contact_group[#index#].name" type="text"
+                   style="width: 120px" class="inputxt"
+                   nullmsg="请输入分组名称！"
+                   ignore="checked"
+
+                   datatype="*"
+            >
+
+            <label class="Validform_label" style="display: none;">分组名称</label>
+        </td>
+        <td align="left">
+            <input id="jform_contact_group[#index#].person_id" name="jform_contact_group[#index#].person_id" type="text"
+                   style="width: 120px" class="inputxt"
+                   nullmsg="请输入主表id！"
+                   ignore="ignore"
+
+
+            >
+
+            <label class="Validform_label" style="display: none;">主表id</label>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script type="text/javascript"></script>
+<script>
+
+    //通用弹出式文件上传
+    function commonUpload(callback, inputId) {
+        $.dialog({
+            content: "url:systemController.do?commonUpload",
+            lock: true,
+            title: "文件上传",
+            zIndex: getzIndex(),
+            width: 700,
+            height: 200,
+            parent: windowapi,
+            cache: false,
+            ok: function () {
+                var iframe = this.iframe.contentWindow;
+                iframe.uploadCallback(callback, inputId);
+                return true;
+            },
+            cancelVal: '关闭',
+            cancel: function () {
+            }
         });
     }
 
-    /**树形列表数据转换**/
-    function convertTreeData(rows, textField) {
-        for(var i = 0; i < rows.length; i++) {
-            var row = rows[i];
-            row.text = row[textField];
-            if(row.children) {
-                row.state = "open";
-                convertTreeData(row.children, textField);
-            }
-        }
-    }
-    /**树形列表加入子元素**/
-    function joinTreeChildren(arr1, arr2) {
-        for(var i = 0; i < arr1.length; i++) {
-            var row1 = arr1[i];
-            for(var j = 0; j < arr2.length; j++) {
-                if(row1.id == arr2[j].id) {
-                    var children = arr2[j].children;
-                    if(children) {
-                        row1.children = children;
-                    }
-
-                }
-            }
-        }
+    //通用弹出式文件上传-回调
+    function commonUploadDefaultCallBack(url, name, inputId) {
+        var linkElement = document.getElementById(inputId + "_href");
+        var inputElement = document.getElementById(inputId);
+        linkElement.setAttribute("href", url);
+        linkElement.innerHTML = "下载";
+        inputElement.setAttribute("value", url);
+        //$("#"+inputId+"_href").attr('href',url).html('下载');
+        //$("#"+inputId).val(url);
     }
 </script>
-<script type="text/javascript"></script>
 </body>
 </html>

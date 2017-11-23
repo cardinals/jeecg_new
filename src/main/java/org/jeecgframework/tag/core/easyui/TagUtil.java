@@ -473,7 +473,8 @@ public class TagUtil {
 		PrintWriter pw = null;
 		try {
 			pw=response.getWriter();
-			pw.write(object.toString());
+			String dataGridStr = object.toString();
+			pw.write(dataGridStr);
 			pw.flush();
 		} catch (IOException e) {
 			e.printStackTrace();

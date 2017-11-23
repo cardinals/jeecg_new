@@ -38,6 +38,10 @@
 </div>
 <script src="${webRoot}/webpage/com/lte/task/lteScanTaskList.js"></script>
 <script type="text/javascript">
+    function test111(){
+        alert(1);
+    }
+
     $(document).ready(function () {
     });
 

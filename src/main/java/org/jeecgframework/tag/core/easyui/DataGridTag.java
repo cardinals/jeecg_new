@@ -583,7 +583,8 @@ public class DataGridTag extends JeecgTag {
 			
 			out = this.pageContext.getOut();
 
-			out.print(end().toString());
+			String dataGridStr = end().toString();
+			out.print(dataGridStr);
 			out.flush();
 
 //			String indexStyle =null;
