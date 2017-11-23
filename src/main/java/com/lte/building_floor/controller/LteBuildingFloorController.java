@@ -2,6 +2,7 @@ package com.lte.building_floor.controller;
 
 import com.lte.building_floor.entity.LteBuildingFloorEntity;
 import com.lte.building_floor.service.LteBuildingFloorServiceI;
+import com.lte.building_floor.vo.LteBuildingFloorVo;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
@@ -14,6 +15,7 @@ import org.jeecgframework.core.util.ExceptionUtil;
 import org.jeecgframework.core.util.MyBeanUtils;
 import org.jeecgframework.core.util.ResourceUtil;
 import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.minidao.pojo.MiniDaoPage;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
@@ -27,12 +29,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -79,7 +76,15 @@ public class LteBuildingFloorController extends BaseController {
      */
     @RequestMapping(params = "list")
     public ModelAndView list(HttpServletRequest request) {
-        return new ModelAndView("com/lte/building_floor/lteBuildingFloorList");
+        ModelAndView modelAndView = new ModelAndView("com/lte/building_floor/lteBuildingFloorList");
+        List<Map<String, String>> all = lteBuildingFloorService.getAll();
+        List<LteBuildingFloorEntity> entityAll = lteBuildingFloorService.getEntityAll();
+        LteBuildingFloorEntity lteBuildingFloorEntity = new LteBuildingFloorEntity();
+        MiniDaoPage<LteBuildingFloorEntity> allEntities = lteBuildingFloorService.getAllEntities(lteBuildingFloorEntity, 1, 10);
+        List<LteBuildingFloorVo> voAll = lteBuildingFloorService.getVoAll();
+        LteBuildingFloorVo lteBuildingFloorVo = new LteBuildingFloorVo();
+        MiniDaoPage<LteBuildingFloorVo> allVos = lteBuildingFloorService.getAllVos(lteBuildingFloorVo, 1, 10);
+        return modelAndView;
     }
 
     /**
@@ -162,7 +167,6 @@ public class LteBuildingFloorController extends BaseController {
     /**
      * 添加楼层
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doAdd")
@@ -186,7 +190,6 @@ public class LteBuildingFloorController extends BaseController {
     /**
      * 更新楼层
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doUpdate")

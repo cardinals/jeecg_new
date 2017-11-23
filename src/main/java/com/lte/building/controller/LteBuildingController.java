@@ -1,5 +1,8 @@
 package com.lte.building.controller;
 
+import com.jeecg.demo.entity.JeecgDemoEntity;
+import com.jeecg.p3.demo.entity.JeecgP3demoEntity;
+import com.jeecg.p3.demo.service.JeecgP3demoService;
 import com.lte.building.entity.LteBuildingEntity;
 import com.lte.building.service.LteBuildingServiceI;
 import org.apache.log4j.Logger;
@@ -14,6 +17,7 @@ import org.jeecgframework.core.util.ExceptionUtil;
 import org.jeecgframework.core.util.MyBeanUtils;
 import org.jeecgframework.core.util.ResourceUtil;
 import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.minidao.pojo.MiniDaoPage;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
@@ -79,7 +83,8 @@ public class LteBuildingController extends BaseController {
      */
     @RequestMapping(params = "list")
     public ModelAndView list(HttpServletRequest request) {
-        return new ModelAndView("com/lte/building/lteBuildingList");
+        ModelAndView modelAndView = new ModelAndView("com/lte/building/lteBuildingList");
+        return modelAndView;
     }
 
     /**

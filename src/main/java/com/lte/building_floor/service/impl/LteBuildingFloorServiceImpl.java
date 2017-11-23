@@ -1,17 +1,23 @@
 package com.lte.building_floor.service.impl;
 
+import com.lte.building_floor.dao.LteBuildingFloorDao;
 import com.lte.building_floor.entity.LteBuildingFloorEntity;
 import com.lte.building_floor.service.LteBuildingFloorServiceI;
+import com.lte.building_floor.vo.LteBuildingFloorVo;
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.minidao.annotation.Param;
+import org.jeecgframework.minidao.pojo.MiniDaoPage;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -19,6 +25,8 @@ import java.util.UUID;
 @Transactional
 public class LteBuildingFloorServiceImpl extends CommonServiceImpl implements LteBuildingFloorServiceI {
 
+    @Autowired
+    private LteBuildingFloorDao lteBuildingFloorDao;
 
     public void delete(LteBuildingFloorEntity entity) throws Exception {
         super.delete(entity);
@@ -146,5 +154,35 @@ public class LteBuildingFloorServiceImpl extends CommonServiceImpl implements Lt
                 throw new Exception("执行JAVA增强出现异常！");
             }
         }
+    }
+
+    @Override
+    public List<Map<String, String>> getAll(){
+        List<Map<String, String>> all = lteBuildingFloorDao.getAll();
+        return all;
+    }
+
+    @Override
+    public List<LteBuildingFloorEntity> getEntityAll(){
+        List<LteBuildingFloorEntity> entityAll = lteBuildingFloorDao.getEntityAll();
+        return entityAll;
+    }
+
+    @Override
+    public MiniDaoPage<LteBuildingFloorEntity> getAllEntities(@Param("LteBuildingFloorEntity") LteBuildingFloorEntity lteBuildingFloorEntity, @Param("page") int page, @Param("rows") int rows){
+        MiniDaoPage<LteBuildingFloorEntity> allEntities = lteBuildingFloorDao.getAllEntities(lteBuildingFloorEntity, page, rows);
+        return allEntities;
+    }
+
+    @Override
+    public List<LteBuildingFloorVo> getVoAll() {
+        List<LteBuildingFloorVo> voAll = lteBuildingFloorDao.getVoAll();
+        return voAll;
+    }
+
+    @Override
+    public MiniDaoPage<LteBuildingFloorVo> getAllVos(LteBuildingFloorVo lteBuildingFloorVo, int page, int rows) {
+        MiniDaoPage<LteBuildingFloorVo> allVos = lteBuildingFloorDao.getAllVos(lteBuildingFloorVo, page, rows);
+        return allVos;
     }
 }
