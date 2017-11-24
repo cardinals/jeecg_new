@@ -77,13 +77,7 @@ public class LteBuildingFloorController extends BaseController {
     @RequestMapping(params = "list")
     public ModelAndView list(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("com/lte/building_floor/lteBuildingFloorList");
-        List<Map<String, String>> all = lteBuildingFloorService.getAll();
-        List<LteBuildingFloorEntity> entityAll = lteBuildingFloorService.getEntityAll();
-        LteBuildingFloorEntity lteBuildingFloorEntity = new LteBuildingFloorEntity();
-        MiniDaoPage<LteBuildingFloorEntity> allEntities = lteBuildingFloorService.getAllEntities(lteBuildingFloorEntity, 1, 10);
-        List<LteBuildingFloorVo> voAll = lteBuildingFloorService.getVoAll();
-        LteBuildingFloorVo lteBuildingFloorVo = new LteBuildingFloorVo();
-        MiniDaoPage<LteBuildingFloorVo> allVos = lteBuildingFloorService.getAllVos(lteBuildingFloorVo, 1, 10);
+
         return modelAndView;
     }
 

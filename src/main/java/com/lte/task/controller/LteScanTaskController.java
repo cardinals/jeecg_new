@@ -1,5 +1,8 @@
 package com.lte.task.controller;
 
+import com.lte.building_floor.entity.LteBuildingFloorEntity;
+import com.lte.building_floor.service.LteBuildingFloorServiceI;
+import com.lte.building_floor.vo.LteBuildingFloorVo;
 import com.lte.task.entity.LteScanTaskEntity;
 import com.lte.task.service.LteScanTaskServiceI;
 import org.apache.log4j.Logger;
@@ -14,6 +17,7 @@ import org.jeecgframework.core.util.ExceptionUtil;
 import org.jeecgframework.core.util.MyBeanUtils;
 import org.jeecgframework.core.util.ResourceUtil;
 import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.minidao.pojo.MiniDaoPage;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
@@ -67,6 +71,8 @@ public class LteScanTaskController extends BaseController {
     @Autowired
     private LteScanTaskServiceI lteScanTaskService;
     @Autowired
+    private LteBuildingFloorServiceI lteBuildingFloorService;
+    @Autowired
     private SystemService systemService;
     @Autowired
     private Validator validator;
@@ -88,7 +94,6 @@ public class LteScanTaskController extends BaseController {
      * @param request
      * @param response
      * @param dataGrid
-     * @param user
      */
 
     @RequestMapping(params = "datagrid")
@@ -386,5 +391,31 @@ public class LteScanTaskController extends BaseController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") String id) {
         lteScanTaskService.deleteEntityById(LteScanTaskEntity.class, id);
+    }
+
+    @RequestMapping(params = "addData")
+    @ResponseBody
+    public AjaxJson addData(LteScanTaskEntity lteScanTask, HttpServletRequest request) {
+        String message = null;
+        AjaxJson ajaxJson = new AjaxJson();
+        message = "录入成功";
+        try {
+            Map<String, String[]> parameterMap = request.getParameterMap();
+
+            //查询实例
+            List<Map<String, String>> all = lteBuildingFloorService.getAll();
+            List<LteBuildingFloorEntity> entityAll = lteBuildingFloorService.getEntityAll();
+            LteBuildingFloorEntity lteBuildingFloorEntity = new LteBuildingFloorEntity();
+            MiniDaoPage<LteBuildingFloorEntity> allEntities = lteBuildingFloorService.getAllEntities(lteBuildingFloorEntity, 1, 10);
+            List<LteBuildingFloorVo> voAll = lteBuildingFloorService.getVoAll();
+            LteBuildingFloorVo lteBuildingFloorVo = new LteBuildingFloorVo();
+            MiniDaoPage<LteBuildingFloorVo> allVos = lteBuildingFloorService.getAllVos(lteBuildingFloorVo, 1, 10);
+        } catch (Exception e) {
+            e.printStackTrace();
+            message = "录入成功";
+            throw new BusinessException(e.getMessage());
+        }
+        ajaxJson.setMsg(message);
+        return ajaxJson;
     }
 }
