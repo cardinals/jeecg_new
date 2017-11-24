@@ -78,7 +78,6 @@ public class LteBuildingFloorServiceImpl extends CommonServiceImpl implements Lt
     /**
      * 删除操作增强业务
      *
-     * @param id
      * @return
      */
     private void doDelBus(LteBuildingFloorEntity t) throws Exception {

@@ -15,10 +15,4 @@ public interface LteBuildingServiceI extends CommonService {
     Serializable save(LteBuildingEntity entity) throws Exception;
 
     void saveOrUpdate(LteBuildingEntity entity) throws Exception;
-
-    List<Map<String, String>> getAll();
-
-    List<LteBuildingEntity> getEntityAll();
-
-    MiniDaoPage<LteBuildingEntity> getAllEntities(LteBuildingEntity lteBuildingEntity, int i, int i1);
 }

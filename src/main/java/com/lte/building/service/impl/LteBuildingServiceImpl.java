@@ -1,30 +1,23 @@
 package com.lte.building.service.impl;
 
-import com.lte.building.dao.LteBuildingDao;
 import com.lte.building.entity.LteBuildingEntity;
 import com.lte.building.service.LteBuildingServiceI;
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
-import org.jeecgframework.minidao.pojo.MiniDaoPage;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 @Service("lteBuildingService")
 @Transactional
 public class LteBuildingServiceImpl extends CommonServiceImpl implements LteBuildingServiceI {
-
-    @Autowired
-    private LteBuildingDao lteBuildingDao;
 
     public void delete(LteBuildingEntity entity) throws Exception {
         super.delete(entity);
@@ -43,24 +36,6 @@ public class LteBuildingServiceImpl extends CommonServiceImpl implements LteBuil
         super.saveOrUpdate(entity);
         //执行更新操作增强业务
         this.doUpdateBus(entity);
-    }
-
-    @Override
-    public List<Map<String, String>> getAll() {
-        List<Map<String, String>> all = lteBuildingDao.getAll();
-        return all;
-    }
-
-    @Override
-    public List<LteBuildingEntity> getEntityAll() {
-        List<LteBuildingEntity> entityAll = lteBuildingDao.getEntityAll();
-        return entityAll;
-    }
-
-    @Override
-    public MiniDaoPage<LteBuildingEntity> getAllEntities(LteBuildingEntity lteBuildingEntity, int i, int i1) {
-        MiniDaoPage<LteBuildingEntity> allEntities = lteBuildingDao.getAllEntities(lteBuildingEntity, i, i1);
-        return allEntities;
     }
 
     /**
@@ -94,7 +69,6 @@ public class LteBuildingServiceImpl extends CommonServiceImpl implements LteBuil
     /**
      * 删除操作增强业务
      *
-     * @param id
      * @return
      */
     private void doDelBus(LteBuildingEntity t) throws Exception {

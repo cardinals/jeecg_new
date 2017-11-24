@@ -1,0 +1,1 @@
+SELECT * FROM lte_building_floor WHERE 1 = 1
