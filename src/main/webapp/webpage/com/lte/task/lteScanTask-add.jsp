@@ -7,6 +7,28 @@
     <t:base type="jquery,easyui,tools,DatePicker"></t:base>
     <script type="text/javascript">
         //编写自定义JS代码
+        $(function () {
+            $.ajax({
+                url: 'lteBuildingController.do?listSel',
+                dataType: 'json',
+                data: {},
+                success: function (ajaxJson) {
+                    var relustList = ajaxJson.obj;
+                    $.each(relustList, function (i, v) {
+                        $('#buildingId')
+                            .append($('<option>', {value: v.id})
+                                .text(v.buildingName));
+                    });
+                }
+            });
+
+            $("#buildingId").change(function () {
+                var buildingId = $("#buildingId option:selected").val();
+                $('#lteBuildingFloorList').datagrid('load', {
+                    buildingId: buildingId == "" ? 0 : buildingId
+                });
+            });
+        });
     </script>
 </head>
 <body>
@@ -16,14 +38,15 @@
         <tr>
             <td align="right">
                 <label class="Validform_label">
-                    楼宇ID:
+                    楼宇:
                 </label>
             </td>
             <td class="value">
-                <input id="buildingId" name="buildingId" type="text" style="width: 150px" class="inputxt" datatype="n"
-                       ignore="checked"/>
+                <select id="buildingId" name="buildingId" ignore="ignore">
+                    <option value="">请选择楼宇</option>
+                </select>
                 <span class="Validform_checktip"></span>
-                <label class="Validform_label" style="display: none;">楼宇ID</label>
+                <label class="Validform_label" style="display: none;">楼宇</label>
             </td>
         </tr>
         <tr>
@@ -92,26 +115,27 @@
             </td>
         </tr>
     </table>
+    <t:datagrid name="lteBuildingFloorList" pagination="true" fitColumns="true"
+                title="楼层信息" actionUrl="lteBuildingFloorController.do?datagrid" extendParams="queryParams:{buildingId:0}"
+                idField="id"
+                fit="true" queryMode="group">
+        <t:dgCol title="ID" field="id" hidden="true" queryMode="group" width="120"></t:dgCol>
+        <t:dgCol title="楼宇ID" field="buildingId" queryMode="group" dictionary="pomp_building,building_id,id"
+                 popup="true" width="120"></t:dgCol>
+        <t:dgCol title="楼层名称" field="floorName" queryMode="group" width="120"></t:dgCol>
+        <t:dgCol title="楼层编号" field="floorNo" queryMode="group" width="120"></t:dgCol>
+        <t:dgCol title="楼层属性" field="floorProperty" queryMode="group" width="120"></t:dgCol>
+        <t:dgCol title="楼层描述" field="description" hidden="true" queryMode="group" width="500"></t:dgCol>
+        <t:dgCol title="楼宇备注" field="note" hidden="true" queryMode="group" width="500"></t:dgCol>
+        <t:dgCol title="创建人名称" field="createName" hidden="true" queryMode="group" width="120"></t:dgCol>
+        <t:dgCol title="创建人登录名称" field="createBy" hidden="true" queryMode="group" width="120"></t:dgCol>
+        <t:dgCol title="创建日期" field="createDate" formatter="yyyy-MM-dd" hidden="true" queryMode="group"
+                 width="120"></t:dgCol>
+        <t:dgCol title="更新人名称" field="updateName" hidden="true" queryMode="group" width="120"></t:dgCol>
+        <t:dgCol title="更新人登录名称" field="updateBy" hidden="true" queryMode="group" width="120"></t:dgCol>
+        <t:dgCol title="更新日期" field="updateDate" formatter="yyyy-MM-dd" hidden="true" queryMode="group"
+                 width="120"></t:dgCol>
+    </t:datagrid>
 </t:formvalid>
-<t:datagrid name="lteBuildingFloorList" checkbox="true" pagination="true" fitColumns="true"
-            title="lte_building_floor" actionUrl="lteBuildingFloorController.do?datagrid" idField="id"
-            fit="true" queryMode="group">
-    <t:dgCol title="ID" field="id" hidden="true" queryMode="group" width="120"></t:dgCol>
-    <t:dgCol title="楼宇ID" field="buildingId" queryMode="group" dictionary="pomp_building,building_id,id"
-             popup="true" width="120"></t:dgCol>
-    <t:dgCol title="楼层名称" field="floorName" queryMode="group" width="120"></t:dgCol>
-    <t:dgCol title="楼层编号" field="floorNo" queryMode="group" width="120"></t:dgCol>
-    <t:dgCol title="楼层属性" field="floorProperty" queryMode="group" width="120"></t:dgCol>
-    <t:dgCol title="楼层描述" field="description" hidden="true" queryMode="group" width="500"></t:dgCol>
-    <t:dgCol title="楼宇备注" field="note" hidden="true" queryMode="group" width="500"></t:dgCol>
-    <t:dgCol title="创建人名称" field="createName" hidden="true" queryMode="group" width="120"></t:dgCol>
-    <t:dgCol title="创建人登录名称" field="createBy" hidden="true" queryMode="group" width="120"></t:dgCol>
-    <t:dgCol title="创建日期" field="createDate" formatter="yyyy-MM-dd" hidden="true" queryMode="group"
-             width="120"></t:dgCol>
-    <t:dgCol title="更新人名称" field="updateName" hidden="true" queryMode="group" width="120"></t:dgCol>
-    <t:dgCol title="更新人登录名称" field="updateBy" hidden="true" queryMode="group" width="120"></t:dgCol>
-    <t:dgCol title="更新日期" field="updateDate" formatter="yyyy-MM-dd" hidden="true" queryMode="group"
-             width="120"></t:dgCol>
-</t:datagrid>
 </body>
 <script src="${webRoot}/webpage/com/lte/task/lteScanTask.js"></script>

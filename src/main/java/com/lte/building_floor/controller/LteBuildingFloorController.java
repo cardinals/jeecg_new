@@ -99,7 +99,8 @@ public class LteBuildingFloorController extends BaseController {
     public void datagrid(LteBuildingFloorEntity lteBuildingFloor, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(LteBuildingFloorEntity.class, dataGrid);
         //查询条件组装器
-        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, lteBuildingFloor, request.getParameterMap());
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, lteBuildingFloor, parameterMap);
         try {
             //自定义追加查询条件
         } catch (Exception e) {
@@ -388,5 +389,25 @@ public class LteBuildingFloorController extends BaseController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") String id) {
         lteBuildingFloorService.deleteEntityById(LteBuildingFloorEntity.class, id);
+    }
+
+    /**
+     * 测试导出Word
+     *
+     * @return
+     */
+    @RequestMapping(params = "addExportWord")
+    @ResponseBody
+    public AjaxJson addExportWord(HttpServletRequest request) {
+        AjaxJson ajaxJson = new AjaxJson();
+        try {
+            lteBuildingFloorService.addExportWord();
+            ajaxJson.setMsg("导出成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ajaxJson.setMsg("导出失败");
+            throw new BusinessException(e.getMessage());
+        }
+        return ajaxJson;
     }
 }

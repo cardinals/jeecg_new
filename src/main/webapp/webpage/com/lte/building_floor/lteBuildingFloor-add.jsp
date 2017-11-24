@@ -32,7 +32,7 @@
         <tr>
             <td align="right">
                 <label class="Validform_label">
-                    楼宇ID:
+                    楼宇:
                 </label>
             </td>
             <td class="value">
@@ -41,7 +41,7 @@
                         <%--<option value="0">否</option>--%>
                 </select>
                 <span class="Validform_checktip"></span>
-                <label class="Validform_label" style="display: none;">楼宇ID</label>
+                <label class="Validform_label" style="display: none;">楼宇</label>
             </td>
         </tr>
         <tr>
