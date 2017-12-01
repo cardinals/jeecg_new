@@ -1,6 +1,5 @@
 package com.lte.task.controller;
 
-import com.lte.building_floor.entity.LteBuildingFloorEntity;
 import com.lte.building_floor.service.LteBuildingFloorServiceI;
 import com.lte.building_floor.vo.LteBuildingFloorVo;
 import com.lte.task.entity.LteScanTaskEntity;
@@ -31,12 +30,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -46,12 +40,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.*;
 
 /**
  * @author onlineGenerator
@@ -400,16 +393,25 @@ public class LteScanTaskController extends BaseController {
         AjaxJson ajaxJson = new AjaxJson();
         message = "录入成功";
         try {
+
             Map<String, String[]> parameterMap = request.getParameterMap();
 
+            String buildingId = request.getParameter("buildingId");
+            String buildingFloorId = request.getParameter("buildingFloorId");
+            String taskId = request.getParameter("taskId");
+
             //查询实例
-            List<Map<String, String>> all = lteBuildingFloorService.getAll();
-            List<LteBuildingFloorEntity> entityAll = lteBuildingFloorService.getEntityAll();
-            LteBuildingFloorEntity lteBuildingFloorEntity = new LteBuildingFloorEntity();
-            MiniDaoPage<LteBuildingFloorEntity> allEntities = lteBuildingFloorService.getAllEntities(lteBuildingFloorEntity, 1, 10);
-            List<LteBuildingFloorVo> voAll = lteBuildingFloorService.getVoAll();
+            //List<Map<String, String>> all = lteBuildingFloorService.getAll();
+            //List<LteBuildingFloorEntity> entityAll = lteBuildingFloorService.getEntityAll();
+            //LteBuildingFloorEntity lteBuildingFloorEntity = new LteBuildingFloorEntity();
+            //MiniDaoPage<LteBuildingFloorEntity> allEntities = lteBuildingFloorService.getAllEntities(lteBuildingFloorEntity, 1, 10);
+            //List<LteBuildingFloorVo> voAll = lteBuildingFloorService.getVoAll();
             LteBuildingFloorVo lteBuildingFloorVo = new LteBuildingFloorVo();
             MiniDaoPage<LteBuildingFloorVo> allVos = lteBuildingFloorService.getAllVos(lteBuildingFloorVo, 1, 10);
+            String basePath = request.getSession().getServletContext().getRealPath("/");
+
+
+            lteScanTaskService.runTask(Long.parseLong(buildingId), Long.parseLong(buildingFloorId), Long.parseLong(taskId), basePath);
         } catch (Exception e) {
             e.printStackTrace();
             message = "录入成功";
@@ -418,4 +420,81 @@ public class LteScanTaskController extends BaseController {
         ajaxJson.setMsg(message);
         return ajaxJson;
     }
+
+    /**
+     * 生成模板
+     *
+     * @return
+     */
+    @RequestMapping(params = "createWord")
+    @ResponseBody
+    public AjaxJson createWord(HttpServletRequest request) {
+        AjaxJson ajaxJson = new AjaxJson();
+        try {
+            String realPath = request.getServletContext().getRealPath("report/htmlTemplate/");
+            Map<String, Object> paramsMap = getParamsMap(request);
+            lteScanTaskService.createWord(paramsMap, realPath);
+            ajaxJson.setMsg("导出成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ajaxJson.setMsg("导出失败");
+            throw new BusinessException(e.getMessage());
+        }
+        return ajaxJson;
+    }
+
+    @RequestMapping(params = "downWord")
+    public void downWord(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            Date dt = new Date();
+            String fileName = new Long(dt.getTime()).toString();
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("multipart/form-data");
+            String fileType = ".doc";
+            fileName = URLEncoder.encode(fileName, "utf-8");
+            response.setHeader("Content-Disposition", "attachment;fileName=" + fileName + fileType);
+            Map<String, Object> paramsMap = getParamsMap(request);
+            String taskId = (String) paramsMap.get("taskId");
+            String newFilePath = "\\files\\report\\" + taskId + "\\report.docx";
+            InputStream inputStream = new FileInputStream(new File(newFilePath));
+
+            OutputStream os = response.getOutputStream();
+            byte[] b = new byte[2048];
+            int length;
+            while ((length = inputStream.read(b)) > 0) {
+                os.write(b, 0, length);
+            }
+            os.close();
+            inputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public byte[] getFileInput(String templateAbsPath) {
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(templateAbsPath);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            byte[] readin = new byte[512];
+            int length = 0;
+            while ((length = fileInputStream.read(readin)) > 0) {
+                baos.write(readin, 0, length);
+            }
+            return baos.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fileInputStream != null) {
+                try {
+                    fileInputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return new byte[0];
+    }
+
 }

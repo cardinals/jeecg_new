@@ -27,6 +27,4 @@ public interface LteBuildingFloorServiceI extends CommonService {
     List<LteBuildingFloorVo> getVoAll();
 
     MiniDaoPage<LteBuildingFloorVo> getAllVos(@Param("lteBuildingFloorVo") LteBuildingFloorVo lteBuildingFloorVo, @Param("page") int page, @Param("rows") int rows);
-
-    void addExportWord() throws Exception;
 }

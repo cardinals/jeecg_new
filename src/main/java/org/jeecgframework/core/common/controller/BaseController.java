@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -24,6 +22,22 @@ import java.util.List;
 @Controller
 @RequestMapping("/baseController")
 public class BaseController {
+	/**
+	 * 获取参数
+	 *
+	 * @param request
+	 * @return
+	 */
+	protected Map<String, Object> getParamsMap(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap();
+		Enumeration params = request.getParameterNames();
+
+		while (params.hasMoreElements()) {
+			String key = params.nextElement().toString();
+			map.put(key, request.getParameter(key));
+		}
+		return map;
+	}
 
 	/**
 	 * 将前台传递过来的日期格式的字符串，自动转化为Date类型

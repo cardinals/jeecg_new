@@ -46,7 +46,7 @@
                 data: {
                     taskId:taskId,
                     buildingId:buildingId,
-                    building_floor_id:building_floor_id
+                    buildingFloorId:building_floor_id
                 },
                 success: function (ajaxJson) {
                     var relustList = ajaxJson.obj;
@@ -150,7 +150,7 @@
             </td>
         </tr>
     </table>
-    <div style="width:700px;height: 300px;">
+    <div style="width:729px;height:300px;">
         <t:datagrid name="lteBuildingFloorList" pagination="true" fitColumns="true"
                     title="楼层信息" actionUrl="lteBuildingFloorController.do?datagrid"
                     extendParams="queryParams:{buildingId:0}"

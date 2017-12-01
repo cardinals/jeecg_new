@@ -33,17 +33,43 @@
             <t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar>
             <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
             <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar>
+            <t:dgToolBar title="生成Word" icon="icon-putout" onclick="createWord()"></t:dgToolBar>
+            <t:dgToolBar title="下载Word" icon="icon-putout" onclick="downWord()"></t:dgToolBar>
         </t:datagrid>
     </div>
 </div>
 <script src="${webRoot}/webpage/com/lte/task/lteScanTaskList.js"></script>
 <script type="text/javascript">
-    function test111(){
-        alert(1);
+    function createWord() {
+        var selectRow = $("#lteScanTaskList").datagrid("getSelected");
+        if(selectRow == undefined || selectRow == null){
+            alert("请选择一行数据");
+            return false;
+        }
+        var taskId = selectRow.id;
+        $.ajax({
+            url: "lteScanTaskController.do?createWord",
+            data: {
+                taskId: taskId,
+                fileName:'报告模板v2.docx'
+            },
+            success: function (msg) {
+            }
+        });
     }
 
-    $(document).ready(function () {
-    });
+    function downWord() {
+        var selectRow = $("#lteScanTaskList").datagrid("getSelected");
+        if(selectRow == undefined || selectRow == null){
+            alert("请选择一行数据");
+            return false;
+        }
+        var taskId = selectRow.id;
+        window.location.href = 'lteScanTaskController.do?downWord&taskId=' + taskId;
+//        var frm = $("#wordForm");
+//        frm.attr("action", "lteScanTaskController.do?downWord");
+//        frm.submit();
+    }
 
     //导入
     function ImportXls() {

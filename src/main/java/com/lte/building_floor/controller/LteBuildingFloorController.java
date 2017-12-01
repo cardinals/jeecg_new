@@ -2,7 +2,6 @@ package com.lte.building_floor.controller;
 
 import com.lte.building_floor.entity.LteBuildingFloorEntity;
 import com.lte.building_floor.service.LteBuildingFloorServiceI;
-import com.lte.building_floor.vo.LteBuildingFloorVo;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
@@ -15,7 +14,6 @@ import org.jeecgframework.core.util.ExceptionUtil;
 import org.jeecgframework.core.util.MyBeanUtils;
 import org.jeecgframework.core.util.ResourceUtil;
 import org.jeecgframework.core.util.StringUtil;
-import org.jeecgframework.minidao.pojo.MiniDaoPage;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
@@ -383,25 +381,5 @@ public class LteBuildingFloorController extends BaseController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") String id) {
         lteBuildingFloorService.deleteEntityById(LteBuildingFloorEntity.class, id);
-    }
-
-    /**
-     * 测试导出Word
-     *
-     * @return
-     */
-    @RequestMapping(params = "addExportWord")
-    @ResponseBody
-    public AjaxJson addExportWord(HttpServletRequest request) {
-        AjaxJson ajaxJson = new AjaxJson();
-        try {
-            lteBuildingFloorService.addExportWord();
-            ajaxJson.setMsg("导出成功");
-        } catch (Exception e) {
-            e.printStackTrace();
-            ajaxJson.setMsg("导出失败");
-            throw new BusinessException(e.getMessage());
-        }
-        return ajaxJson;
     }
 }
